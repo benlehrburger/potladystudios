@@ -3,7 +3,6 @@
 
   var PIECES = [
     { id: 1, cat: "garden", src: "images/garden/IMG_0065.jpg" },
-    { id: 2, cat: "garden", src: "images/garden/IMG_0194.jpg" },
     { id: 3, cat: "garden", src: "images/garden/IMG_0199.jpg" },
     { id: 4, cat: "garden", src: "images/garden/IMG_0202.jpg" },
     { id: 5, cat: "garden", src: "images/garden/IMG_0212.jpg" },
