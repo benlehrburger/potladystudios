@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About &mdash; Pot Lady Studios</title>
+  <meta name="description" content="About Sharyn Kohen, the maker behind Pot Lady Studios handmade ceramics.">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-mark" aria-label="Pot Lady Studios home">
+      <img class="mark-img" src="images/logo.png" alt="Pot Lady Studios">
+      <span class="mark-text">Pot Lady Studios</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="about.html">About</a>
+      <a href="index.html#commissions" class="nav-cta">Commissions</a>
+    </div>
+  </nav>
+
+  <section class="about" id="about">
+    <div class="about-image reveal"><img src="images/profile.jpg" alt="Portrait of Sharyn Kohen in the studio"></div>
+    <div class="about-text reveal">
+      <p class="eyebrow">About</p>
+      <h2 class="section-title">Sharyn Kohen</h2>
+      <p>I&rsquo;m a retired financial services consulting executive with a growing passion for ceramics. After years spent helping clients solve complex problems, I realized the part of consulting I loved most was the creative challenge of working through something new &mdash; often using familiar tools in unfamiliar ways. Ceramics offers me that same sense of discovery and problem-solving, and it&rsquo;s the inspiration behind Pot Lady Studios.</p>
+      <p>My work draws inspiration from two long-standing passions: gardening, especially container gardening, and the thrill of finding vintage and industrial objects that carry texture, history, and character.</p>
+      <p>In the studio, every piece becomes its own small puzzle: how a form should settle, how a glaze will break or move, and how I can engineer my ideas so that they come to life in three dimensions.</p>
+      <p>Pot Lady Studios is a place to share my work, my process, and the inspiration I find in the garden, in old objects, and in the joy of learning something new each day.</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-mark">
+      <span>Pot Lady Studios</span>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:sharyn.kohen@gmail.com">sharyn.kohen@gmail.com</a>
+      <a href="#" aria-label="Instagram">Instagram</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Sharyn Kohen. All rights reserved.</p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.getElementById("nav");
+      function onScroll() { nav.classList.toggle("is-scrolled", window.scrollY > 32); }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-visible");
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -60px 0px" });
+      document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+
+</body>
+</html>
