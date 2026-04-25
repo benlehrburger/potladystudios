@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pot Lady Studios &mdash; Handmade Ceramics by Sharyn Kohen</title>
+  <meta name="description" content="Handmade ceramics born from vintage finds and garden landscapes. Hand-built garden pieces, home decor, and totems by Sharyn Kohen.">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="#top" class="nav-mark" aria-label="Pot Lady Studios home">
+      <img class="mark-img" src="images/logo.png" alt="Pot Lady Studios">
+      <span class="mark-text">Pot Lady Studios</span>
+    </a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#commissions" class="nav-cta">Commissions</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-text">
+      <p class="eyebrow">Sharyn Kohen</p>
+      <h1 class="hero-title">Pot<br>Lady<br>Studios</h1>
+      <p class="hero-tag">Handmade ceramics born from vintage finds and garden landscapes.</p>
+    </div>
+    <div class="hero-image"><img src="images/totems/IMG_5521.jpg" alt="Hand-built ceramic totem by Sharyn Kohen"></div>
+    <div class="hero-scroll"><span>Scroll</span><span class="scroll-line"></span></div>
+  </header>
+
+  <section class="intro reveal">
+    <div class="intro-image"><img src="images/garden/IMG_0194.jpg" alt="Hand-built ceramic garden piece"></div>
+    <div class="intro-text">
+      <p class="eyebrow">Process</p>
+      <h2 class="intro-quote">Every piece becomes its own small puzzle &mdash; how a form should settle, how a glaze will break or move, how an idea comes to life in three dimensions.</h2>
+    </div>
+  </section>
+
+  <section class="work" id="work">
+    <header class="section-head reveal">
+      <h2 class="section-title">Work</h2>
+    </header>
+    <div class="filters reveal" role="tablist" aria-label="Filter work by category">
+      <button class="filter is-active" data-filter="all" role="tab" aria-selected="true">All <sup>21</sup></button>
+      <button class="filter" data-filter="garden" role="tab" aria-selected="false">Garden Pieces <sup>10</sup></button>
+      <button class="filter" data-filter="home" role="tab" aria-selected="false">Home Decor <sup>07</sup></button>
+      <button class="filter" data-filter="totems" role="tab" aria-selected="false">Totems <sup>04</sup></button>
+    </div>
+    <div class="gallery-grid" id="gallery-grid"></div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="about-image reveal"><img src="images/profile.jpg" alt="Portrait of Sharyn Kohen in the studio"></div>
+    <div class="about-text reveal">
+      <p class="eyebrow">About</p>
+      <h2 class="section-title">Sharyn Kohen</h2>
+      <p>I&rsquo;m a retired financial services consulting executive with a growing passion for ceramics. After years spent helping clients solve complex problems, I realized the part of consulting I loved most was the creative challenge of working through something new &mdash; often using familiar tools in unfamiliar ways. Ceramics offers me that same sense of discovery and problem-solving, and it&rsquo;s the inspiration behind Pot Lady Studios.</p>
+      <p>My work draws inspiration from two long-standing passions: gardening, especially container gardening, and the thrill of finding vintage and industrial objects that carry texture, history, and character.</p>
+      <p>In the studio, every piece becomes its own small puzzle: how a form should settle, how a glaze will break or move, and how I can engineer my ideas so that they come to life in three dimensions. It&rsquo;s the same mindset that fueled my consulting work, now expressed through clay, fire, and experimentation.</p>
+      <p>Pot Lady Studios is a place to share my work, my process, and the inspiration I find in the garden, in old objects, and in the joy of learning something new each day.</p>
+    </div>
+  </section>
+
+  <section class="commissions" id="commissions">
+    <div class="commissions-inner">
+      <div class="commissions-text reveal">
+        <p class="eyebrow eyebrow-light">Commissions</p>
+        <h2 class="section-title">Made to order.</h2>
+        <p>Have something in mind? I take on a handful of custom pieces each season &mdash; planters for the garden, vessels for the home, or something we figure out together. Tell me a bit about what you&rsquo;re after and I&rsquo;ll be in touch.</p>
+      </div>
+      <form class="inquiry reveal" id="inquiry">
+        <div class="field">
+          <label for="f-name">Name</label>
+          <input id="f-name" type="text" name="name" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" type="email" name="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="f-project">Project Description</label>
+          <input id="f-project" type="text" name="project" placeholder="e.g. Pair of garden planters, approx 30in">
+        </div>
+        <div class="field">
+          <label for="f-message">Message</label>
+          <textarea id="f-message" name="message" rows="5"></textarea>
+        </div>
+        <button type="submit" class="submit">Send Inquiry</button>
+        <p class="form-note">Opens your email app with a pre-filled message to Sharyn.</p>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-mark">
+      <span>Pot Lady Studios</span>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:sharyn.kohen@gmail.com">sharyn.kohen@gmail.com</a>
+      <a href="#" aria-label="Instagram">Instagram</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Sharyn Kohen. All rights reserved.</p>
+  </footer>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Piece detail">
+    <button class="lb-close" aria-label="Close">&#x2715;</button>
+    <button class="lb-prev" aria-label="Previous piece">&larr;</button>
+    <button class="lb-next" aria-label="Next piece">&rarr;</button>
+    <div class="lb-content">
+      <div class="lb-image"><img id="lb-img" src="" alt=""></div>
+      <div class="lb-info">
+        <p class="lb-counter"><span id="lb-idx">01</span> &nbsp;/&nbsp; <span id="lb-total">21</span></p>
+        <h3 id="lb-title">Category</h3>
+        <dl class="lb-meta">
+          <dt>Material</dt><dd>Stoneware, hand-built</dd>
+          <dt>Inquire</dt><dd><a href="#commissions" id="lb-inquire">Available &mdash; ask about this piece</a></dd>
+        </dl>
+        <p class="lb-desc">Handmade ceramics born from vintage finds and garden landscapes.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
