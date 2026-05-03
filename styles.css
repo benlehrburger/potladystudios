@@ -217,6 +217,19 @@ input, select, textarea { font: inherit; }
   gap: clamp(2rem, 6vw, 6rem);
   align-items: start;
 }
+.about.about-stacked {
+  display: block;
+  max-width: 42rem;
+}
+.about.about-stacked .about-text + .about-image,
+.about.about-stacked .about-image + .about-text {
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+.about.about-stacked .about-image {
+  max-width: 22rem;
+  margin-left: auto;
+  margin-right: auto;
+}
 .about-image { aspect-ratio: 3 / 4; }
 .ph-portrait { --tone: #6b8490; }
 .about-text .section-title { margin-bottom: 1.5rem; }
