@@ -68,6 +68,15 @@ Some of these are repeats but bear emphasizing:
 - **Be overly communicative.** Tell her what you're about to do, then tell
   her what changed when it's live. A short "Done — the new piece is live
   on the home page" is the floor.
+- **Link to the live site, don't just name it.** Sharyn doesn't always
+  know where her changes end up or how to get there. Whenever you'd
+  refer to "the live site" or "your site," write the actual URL as a
+  clickable link instead: <https://potladystudios.netlify.app/>. Same
+  for specific pages — link
+  <https://potladystudios.netlify.app/about.html> or
+  <https://potladystudios.netlify.app/commissions.html> rather than
+  saying "the about page." Every "go check it" message should hand
+  her a link she can tap.
 - **You cannot ask Ben yourself.** If something is blocked, tell Sharyn to
   reach out to Ben.
 
