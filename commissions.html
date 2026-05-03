@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Commissions &mdash; Pot Lady Studios</title>
   <meta name="description" content="Commission a custom hand-built ceramic piece from Sharyn Kohen &mdash; planters, vessels, and totems made to order.">
-  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="icon" type="image/png" href="images/admin/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -15,50 +15,61 @@
 
   <nav class="nav" id="nav">
     <a href="index.html" class="nav-mark" aria-label="Pot Lady Studios home">
-      <img class="mark-img" src="images/logo.png" alt="Pot Lady Studios">
+      <img class="mark-img" src="images/admin/logo.png" alt="Pot Lady Studios">
       <span class="mark-text">Pot Lady Studios</span>
     </a>
     <div class="nav-links">
       <a href="index.html#work">Work</a>
-      <a href="about.html">About</a>
       <a href="commissions.html" class="nav-cta">Commissions</a>
+      <a href="about.html">About</a>
     </div>
   </nav>
 
   <section class="commissions-intro">
     <div class="commissions-intro-inner reveal">
       <p class="eyebrow">Commissions</p>
-      <h1 class="section-title">Made to order.</h1>
-      <p class="commissions-lede">A handful of custom pieces each season &mdash; planters for the garden, vessels for the home, or something we figure out together.</p>
+      <h1 class="section-title">Made for you.</h1>
+      <p class="commissions-lede">Sent from my studios in New York, I&rsquo;ll create a garden planter, kitchenware, a personal totem, or anything else inspiring you.</p>
+    </div>
+    <div class="commissions-map reveal">
+      <img src="images/admin/ny-locations.png" alt="Map of southern New York with locations of Pot Lady Studios in Scarsdale and Mattituck">
     </div>
   </section>
 
   <section class="commissions" id="commissions">
     <div class="commissions-inner">
       <div class="commissions-text reveal">
-        <p class="eyebrow eyebrow-light">Inquire</p>
-        <h2 class="section-title">Tell me what you have in mind.</h2>
-        <p>Send a few details about the piece you&rsquo;re envisioning &mdash; size, setting, anything that&rsquo;s inspiring you &mdash; and I&rsquo;ll be in touch.</p>
+        <h2 class="section-title">Let's make something new.</h2>
+        <p>Send a few details about the piece you&rsquo;re envisioning (size, setting, anything that&rsquo;s inspiring you) and I&rsquo;ll be in touch.</p>
       </div>
-      <form class="inquiry reveal" id="inquiry">
+      <form class="inquiry reveal" id="inquiry" name="commission-inquiry" method="POST" data-netlify="true" enctype="multipart/form-data">
+        <input type="hidden" name="form-name" value="commission-inquiry">
         <div class="field">
-          <label for="f-name">Name</label>
+          <label for="f-name">Name <span class="field-required" aria-hidden="true">*</span></label>
           <input id="f-name" type="text" name="name" autocomplete="name" required>
         </div>
         <div class="field">
-          <label for="f-email">Email</label>
+          <label for="f-email">Email <span class="field-required" aria-hidden="true">*</span></label>
           <input id="f-email" type="email" name="email" autocomplete="email" required>
         </div>
         <div class="field">
-          <label for="f-project">Project Description</label>
-          <input id="f-project" type="text" name="project" placeholder="e.g. Pair of garden planters, approx 30in">
+          <label for="f-project">Project Description <span class="field-required" aria-hidden="true">*</span></label>
+          <input id="f-project" type="text" name="project" placeholder="e.g. Pair of garden planters, approx 30in" required>
         </div>
         <div class="field">
           <label for="f-message">Message</label>
           <textarea id="f-message" name="message" rows="5"></textarea>
         </div>
+        <div class="field field-file">
+          <label for="f-images">Reference Images <span class="field-optional">(optional)</span></label>
+          <input id="f-images" type="file" name="images" multiple accept="image/*">
+          <label for="f-images" class="file-trigger">
+            <span class="file-trigger-text">Choose images</span>
+            <span class="file-list" id="f-images-list">No files selected</span>
+          </label>
+        </div>
         <button type="submit" class="submit">Send Inquiry</button>
-        <p class="form-note">Opens your email app with a pre-filled message to Sharyn.</p>
+        <p class="form-note">Sharyn will reply by email within a few days.</p>
       </form>
     </div>
   </section>
@@ -90,19 +101,39 @@
       }, { threshold: 0.12, rootMargin: "0px 0px -60px 0px" });
       document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
 
-      document.getElementById("inquiry").addEventListener("submit", function (e) {
-        e.preventDefault();
-        var fd = new FormData(e.target);
-        var subject = "Commission inquiry - Pot Lady Studios";
-        var body =
-          "Name: " + (fd.get("name") || "") + "\n" +
-          "Email: " + (fd.get("email") || "") + "\n" +
-          "Project: " + (fd.get("project") || "") + "\n\n" +
-          (fd.get("message") || "");
-        window.location.href =
-          "mailto:sharyn.kohen@gmail.com?subject=" +
-          encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-      });
+      var fileInput = document.getElementById("f-images");
+      var fileList = document.getElementById("f-images-list");
+      if (fileInput && fileList) {
+        var collected = new DataTransfer();
+
+        function updateLabel() {
+          var n = fileInput.files.length;
+          if (n === 0) fileList.textContent = "No files selected";
+          else if (n === 1) fileList.textContent = fileInput.files[0].name;
+          else fileList.textContent = n + " files selected";
+        }
+
+        fileInput.addEventListener("change", function () {
+          var seen = {};
+          for (var i = 0; i < collected.files.length; i++) {
+            var f = collected.files[i];
+            seen[f.name + "_" + f.size] = true;
+          }
+          for (var j = 0; j < fileInput.files.length; j++) {
+            var nf = fileInput.files[j];
+            if (!seen[nf.name + "_" + nf.size]) collected.items.add(nf);
+          }
+          fileInput.files = collected.files;
+          updateLabel();
+        });
+
+        var form = document.getElementById("inquiry");
+        if (form) form.addEventListener("reset", function () {
+          collected = new DataTransfer();
+          fileInput.files = collected.files;
+          updateLabel();
+        });
+      }
     })();
   </script>
 

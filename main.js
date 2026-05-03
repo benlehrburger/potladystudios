@@ -42,23 +42,19 @@
   });
 
   var iso;
-  if (typeof Isotope !== "undefined" && typeof imagesLoaded !== "undefined") {
-    imagesLoaded(grid, function () {
-      iso = new Isotope(grid, {
-        itemSelector: ".piece",
-        layoutMode: "masonry",
-        percentPosition: true,
-        masonry: {
-          columnWidth: ".grid-sizer",
-          gutter: ".gutter-sizer"
-        },
-        transitionDuration: "0.3s"
-      });
-      console.log("[gallery] Isotope initialized with", document.querySelectorAll(".piece").length, "pieces");
+  imagesLoaded(grid, function () {
+    iso = new Isotope(grid, {
+      itemSelector: ".piece",
+      layoutMode: "masonry",
+      percentPosition: true,
+      masonry: {
+        columnWidth: ".grid-sizer",
+        gutter: ".gutter-sizer"
+      },
+      transitionDuration: "0.3s"
     });
-  } else {
-    console.warn("[gallery] Isotope or imagesLoaded not loaded — falling back to natural flow");
-  }
+    grid.classList.add("is-laid-out");
+  });
 
   var filterBtns = document.querySelectorAll(".filter");
   filterBtns.forEach(function (btn) {

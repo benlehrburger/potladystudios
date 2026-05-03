@@ -1,3 +1,8 @@
 [build]
   publish = "."
   command = ""
+
+# Skip Netlify's asset post-processing — CSS/JS are already lean and
+# images are pre-resized via sips. No-op processing just adds deploy time.
+[build.processing]
+  skip_processing = true

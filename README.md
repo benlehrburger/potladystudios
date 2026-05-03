@@ -3,7 +3,7 @@
 Portfolio website for **Pot Lady Studios** — handmade ceramics by Sharyn Kohen,
 born from vintage finds and garden landscapes.
 
-**Live:** https://pot-lady-studios-qifrf.netlify.app
+**Live:** https://potladystudios.netlify.app
 
 ## Stack
 
@@ -19,4 +19,11 @@ Open index.html directly in a browser, or serve the directory:
 
     netlify deploy --prod --dir .
 
-See CLAUDE.md for design-system notes and how to add gallery pieces.
+## Maintenance
+
+Most changes are authored by Sharyn through Claude Code Remote (cloud
+sessions). The deploy pipeline auto-publishes `main`, so changes go live a
+minute or two after they land on `main`.
+
+See **CLAUDE.md** for the full collaboration workflow, design system,
+and how to add or remove gallery pieces.
