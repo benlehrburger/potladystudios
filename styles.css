@@ -102,7 +102,8 @@ input, select, textarea { font: inherit; }
   transform: scaleX(0); transform-origin: left;
   transition: transform 0.35s cubic-bezier(0.2, 0.6, 0.2, 1);
 }
-.nav-links a:hover::after { transform: scaleX(1); }
+.nav-links a:hover::after,
+.nav-links a[aria-current="page"]::after { transform: scaleX(1); }
 
 /* ---------- Hero ---------- */
 .hero {
