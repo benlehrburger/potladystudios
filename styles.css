@@ -217,19 +217,23 @@ input, select, textarea { font: inherit; }
   gap: clamp(2rem, 6vw, 6rem);
   align-items: start;
 }
-/* Two-column layout: image on the left spanning both text blocks. */
+/* Two-column layout: image floats to the right, text flows naturally on
+   the left. Absolute positioning (rather than grid-row spanning) avoids
+   the row-stretch gap between paragraphs. */
 .about.about-stacked {
-  grid-template-columns: 5fr 7fr;
-  grid-auto-rows: auto;
+  display: block;
+  position: relative;
+  min-height: calc(24rem * 4 / 3 + clamp(7rem, 12vw, 10rem) + 4rem);
 }
+.about.about-stacked .about-text { max-width: 60%; }
+.about.about-stacked .about-text:last-of-type { margin-top: clamp(1.25rem, 2.5vw, 2rem); }
 .about.about-stacked .about-image {
-  grid-column: 1;
-  grid-row: 1 / span 2;
-  position: sticky;
-  top: 6rem;
+  position: absolute;
+  top: clamp(7rem, 12vw, 10rem);
+  right: var(--gutter);
+  width: 36%;
+  max-width: 24rem;
 }
-.about.about-stacked .about-text:first-of-type { grid-column: 2; grid-row: 1; }
-.about.about-stacked .about-text:last-of-type  { grid-column: 2; grid-row: 2; margin-top: clamp(1.5rem, 3vw, 2.5rem); }
 .about-image { aspect-ratio: 3 / 4; }
 .ph-portrait { --tone: #6b8490; }
 .about-text .section-title { margin-bottom: 1.5rem; }
@@ -473,14 +477,16 @@ input, select, textarea { font: inherit; }
   .about { gap: 2.5rem; }
   .about-text { order: -1; }
   .about-image { aspect-ratio: 4 / 5; max-width: 360px; max-height: 440px; margin: 0 auto; }
-  /* Stacked variant on narrow widths: revert grid-area placement so image
-     sits between the paragraphs rather than spanning rows beside them. */
-  .about.about-stacked { grid-template-columns: 1fr; max-width: 42rem; }
-  .about.about-stacked .about-image,
-  .about.about-stacked .about-text:first-of-type,
-  .about.about-stacked .about-text:last-of-type { grid-column: 1; grid-row: auto; position: static; top: auto; }
+  /* Stacked variant on narrow widths: image returns to natural flow
+     (between paragraph 2 and paragraph 3 per DOM order). */
+  .about.about-stacked { min-height: 0; max-width: 42rem; }
+  .about.about-stacked .about-text { max-width: none; }
+  .about.about-stacked .about-image {
+    position: static; top: auto; right: auto;
+    width: auto; max-width: 22rem;
+    margin: clamp(2rem, 4vw, 3rem) auto;
+  }
   .about.about-stacked .about-text:last-of-type { margin-top: clamp(2rem, 4vw, 3rem); }
-  .about.about-stacked .about-image { max-width: 22rem; margin-left: auto; margin-right: auto; }
   .grid-sizer, .gallery-grid .piece { width: calc((100% - 1rem) / 2); }
   .gallery-grid .gutter-sizer { width: 1rem; }
   .gallery-grid .piece { margin-bottom: 1rem; }
