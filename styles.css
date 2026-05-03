@@ -277,10 +277,12 @@ input, select, textarea { font: inherit; }
   max-width: var(--max);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 5fr 6fr;
+  grid-template-columns: 6fr 5fr;
   gap: clamp(2.5rem, 6vw, 6rem);
   align-items: start;
 }
+.commissions-inner .commissions-text { order: 2; }
+.commissions-inner .inquiry { order: 1; }
 .commissions-text .section-title { margin-bottom: 1.5rem; }
 .commissions-text p { color: var(--umber-2); max-width: 30em; }
 
@@ -465,6 +467,8 @@ input, select, textarea { font: inherit; }
   .hero-text { padding-top: 0; }
   .hero-image { height: auto; aspect-ratio: 4 / 5; max-height: 60svh; align-self: start; }
   .about, .commissions-inner { grid-template-columns: 1fr; }
+  .commissions-inner .commissions-text { order: 0; }
+  .commissions-inner .inquiry { order: 0; }
   .about { gap: 2.5rem; }
   .about-text { order: -1; }
   .about-image { aspect-ratio: 4 / 5; max-width: 360px; max-height: 440px; margin: 0 auto; }
