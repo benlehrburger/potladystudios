@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commissions &mdash; Pot Lady Studios</title>
+  <meta name="description" content="Commission a custom hand-built ceramic piece from Sharyn Kohen &mdash; planters, vessels, and totems made to order.">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-mark" aria-label="Pot Lady Studios home">
+      <img class="mark-img" src="images/logo.png" alt="Pot Lady Studios">
+      <span class="mark-text">Pot Lady Studios</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="about.html">About</a>
+      <a href="commissions.html" class="nav-cta">Commissions</a>
+    </div>
+  </nav>
+
+  <section class="commissions-intro">
+    <div class="commissions-intro-inner reveal">
+      <p class="eyebrow">Commissions</p>
+      <h1 class="section-title">Made to order.</h1>
+      <p class="commissions-lede">A handful of custom pieces each season &mdash; planters for the garden, vessels for the home, or something we figure out together.</p>
+    </div>
+  </section>
+
+  <section class="commissions" id="commissions">
+    <div class="commissions-inner">
+      <div class="commissions-text reveal">
+        <p class="eyebrow eyebrow-light">Inquire</p>
+        <h2 class="section-title">Tell me what you have in mind.</h2>
+        <p>Send a few details about the piece you&rsquo;re envisioning &mdash; size, setting, anything that&rsquo;s inspiring you &mdash; and I&rsquo;ll be in touch.</p>
+      </div>
+      <form class="inquiry reveal" id="inquiry">
+        <div class="field">
+          <label for="f-name">Name</label>
+          <input id="f-name" type="text" name="name" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" type="email" name="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="f-project">Project Description</label>
+          <input id="f-project" type="text" name="project" placeholder="e.g. Pair of garden planters, approx 30in">
+        </div>
+        <div class="field">
+          <label for="f-message">Message</label>
+          <textarea id="f-message" name="message" rows="5"></textarea>
+        </div>
+        <button type="submit" class="submit">Send Inquiry</button>
+        <p class="form-note">Opens your email app with a pre-filled message to Sharyn.</p>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-mark">
+      <span>Pot Lady Studios</span>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:sharyn.kohen@gmail.com">sharyn.kohen@gmail.com</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Sharyn Kohen. All rights reserved.</p>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.getElementById("nav");
+      function onScroll() { nav.classList.toggle("is-scrolled", window.scrollY > 32); }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-visible");
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -60px 0px" });
+      document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+
+      document.getElementById("inquiry").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var fd = new FormData(e.target);
+        var subject = "Commission inquiry - Pot Lady Studios";
+        var body =
+          "Name: " + (fd.get("name") || "") + "\n" +
+          "Email: " + (fd.get("email") || "") + "\n" +
+          "Project: " + (fd.get("project") || "") + "\n\n" +
+          (fd.get("message") || "");
+        window.location.href =
+          "mailto:sharyn.kohen@gmail.com?subject=" +
+          encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+      });
+    })();
+  </script>
+
+</body>
+</html>

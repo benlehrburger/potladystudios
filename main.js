@@ -2,48 +2,63 @@
   "use strict";
 
   var PIECES = [
-    { id: 1, cat: "garden", src: "images/garden/IMG_0065.jpg" },
-    { id: 3, cat: "garden", src: "images/garden/IMG_0199.jpg" },
-    { id: 4, cat: "garden", src: "images/garden/IMG_0202.jpg" },
-    { id: 5, cat: "garden", src: "images/garden/IMG_0212.jpg" },
-    { id: 6, cat: "garden", src: "images/garden/IMG_0216.jpg" },
-    { id: 7, cat: "garden", src: "images/garden/IMG_0217.jpg" },
-    { id: 8, cat: "garden", src: "images/garden/IMG_4944.jpg" },
-    { id: 9, cat: "garden", src: "images/garden/IMG_5534.jpg" },
-    { id: 10, cat: "garden", src: "images/garden/IMG_5706.jpg" },
-
-    { id: 11, cat: "home", src: "images/home/IMG_0221.jpg" },
-    { id: 12, cat: "home", src: "images/home/IMG_0275.jpg" },
-    { id: 13, cat: "home", src: "images/home/IMG_4873.jpg" },
-    { id: 14, cat: "home", src: "images/home/IMG_4905.jpg" },
-    { id: 15, cat: "home", src: "images/home/IMG_6817.jpeg" },
-    { id: 16, cat: "home", src: "images/home/IMG_6821.jpeg" },
-    { id: 17, cat: "home", src: "images/home/IMG_6824.jpeg" },
-
-    { id: 18, cat: "totems", src: "images/totems/IMG_0029.jpg" },
-    { id: 19, cat: "totems", src: "images/totems/IMG_5466.jpg" },
-    { id: 20, cat: "totems", src: "images/totems/IMG_5467.jpg" },
-    { id: 21, cat: "totems", src: "images/totems/IMG_5521.jpg" }
+    { id: 1,  cat: "home",   src: "images/home/IMG_4905.jpg" },
+    { id: 2,  cat: "totems", src: "images/totems/IMG_5466.jpg" },
+    { id: 3,  cat: "garden", src: "images/garden/IMG_0216.jpg" },
+    { id: 4,  cat: "home",   src: "images/home/IMG_0275.jpg" },
+    { id: 5,  cat: "garden", src: "images/garden/IMG_5534.jpg" },
+    { id: 6,  cat: "totems", src: "images/totems/IMG_5521.jpg" },
+    { id: 7,  cat: "home",   src: "images/home/IMG_6821.jpeg" },
+    { id: 8,  cat: "garden", src: "images/garden/IMG_0202.jpg" },
+    { id: 9,  cat: "home",   src: "images/home/IMG_0221.jpg" },
+    { id: 10, cat: "garden", src: "images/garden/IMG_4944.jpg" },
+    { id: 11, cat: "totems", src: "images/totems/IMG_0029.jpg" },
+    { id: 12, cat: "garden", src: "images/garden/IMG_0065.jpg" },
+    { id: 13, cat: "home",   src: "images/home/IMG_6824.jpeg" },
+    { id: 14, cat: "garden", src: "images/garden/IMG_0212.jpg" },
+    { id: 15, cat: "home",   src: "images/home/IMG_4873.jpg" },
+    { id: 16, cat: "totems", src: "images/totems/IMG_5467.jpg" },
+    { id: 17, cat: "garden", src: "images/garden/IMG_0199.jpg" },
+    { id: 18, cat: "home",   src: "images/home/IMG_6817.jpeg" },
+    { id: 19, cat: "garden", src: "images/garden/IMG_5706.jpg" },
+    { id: 20, cat: "garden", src: "images/garden/IMG_0217.jpg" }
   ];
 
   var CAT_LABELS = { garden: "Garden Pieces", home: "Home Decor", totems: "Totems" };
-  var CAT_SHORT  = { garden: "Garden", home: "Home", totems: "Totem" };
 
   var grid = document.getElementById("gallery-grid");
   PIECES.forEach(function (p) {
     var el = document.createElement("figure");
-    el.className = "piece reveal";
+    el.className = "piece";
     el.setAttribute("data-cat", p.cat);
     el.setAttribute("data-id", p.id);
     el.innerHTML =
       '<img src="' + p.src + '" alt="' + CAT_LABELS[p.cat] + ' ' + p.id + '" loading="lazy">' +
       '<figcaption>' +
         '<span class="piece-no">' + String(p.id).padStart(2, "0") + '</span>' +
-        '<span class="piece-cat">' + CAT_SHORT[p.cat] + '</span>' +
       '</figcaption>';
     el.addEventListener("click", function () { openLightbox(p.id); });
     grid.appendChild(el);
   });
+
+  var iso;
+  if (typeof Isotope !== "undefined" && typeof imagesLoaded !== "undefined") {
+    imagesLoaded(grid, function () {
+      iso = new Isotope(grid, {
+        itemSelector: ".piece",
+        layoutMode: "masonry",
+        percentPosition: true,
+        masonry: {
+          columnWidth: ".grid-sizer",
+          gutter: ".gutter-sizer"
+        },
+        transitionDuration: "0.3s"
+      });
+      console.log("[gallery] Isotope initialized with", document.querySelectorAll(".piece").length, "pieces");
+    });
+  } else {
+    console.warn("[gallery] Isotope or imagesLoaded not loaded — falling back to natural flow");
+  }
 
   var filterBtns = document.querySelectorAll(".filter");
   filterBtns.forEach(function (btn) {
@@ -55,10 +70,7 @@
       btn.classList.add("is-active");
       btn.setAttribute("aria-selected", "true");
       var f = btn.getAttribute("data-filter");
-      document.querySelectorAll(".piece").forEach(function (el) {
-        var match = f === "all" || el.getAttribute("data-cat") === f;
-        el.classList.toggle("is-hidden", !match);
-      });
+      if (iso) iso.arrange({ filter: f === "all" ? "*" : '[data-cat="' + f + '"]' });
     });
   });
 
@@ -125,18 +137,4 @@
     });
   }, { threshold: 0.12, rootMargin: "0px 0px -60px 0px" });
   document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
-
-  document.getElementById("inquiry").addEventListener("submit", function (e) {
-    e.preventDefault();
-    var fd = new FormData(e.target);
-    var subject = "Commission inquiry - Pot Lady Studios";
-    var body =
-      "Name: " + (fd.get("name") || "") + "\n" +
-      "Email: " + (fd.get("email") || "") + "\n" +
-      "Project: " + (fd.get("project") || "") + "\n\n" +
-      (fd.get("message") || "");
-    window.location.href =
-      "mailto:sharyn.kohen@gmail.com?subject=" +
-      encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-  });
 })();

@@ -1,7 +1,7 @@
 # Pot Lady Studios
 
-Portfolio site for Sharyn Kohen's hand-built ceramics practice. Single-page
-static site, zero build step.
+Portfolio site for Sharyn Kohen's hand-built ceramics practice. Multi-page
+static site (index / about / commissions), zero build step.
 
 ## Design system
 
@@ -15,11 +15,17 @@ static site, zero build step.
 
 ## Structure
 
-    index.html      single page: hero / process / gallery / about / commissions / footer / lightbox
-    styles.css      all styles, CSS custom properties at :root
-    main.js         PIECES data array + gallery render, filter, lightbox, mailto form
-    images/         logo.png, profile.jpg, garden/, home/, totems/
-    netlify.toml    publish = "."
+    index.html        home: hero / process / gallery (with lightbox) / footer
+    about.html        about: profile image + bio
+    commissions.html  commissions: intro copy + inquiry form
+    styles.css        all styles, CSS custom properties at :root
+    main.js           index.html only — PIECES data + gallery render, filter, lightbox
+    images/           logo.png, profile.jpg, garden/, home/, totems/
+    netlify.toml      publish = "."
+
+Each page has its own inline `<script>` for nav-scroll state and `.reveal`
+animations. main.js is loaded only on index.html (it errors if `gallery-grid`
+isn't in the DOM). commissions.html has its own inline mailto submit handler.
 
 ## Adding a piece to the gallery
 
@@ -29,10 +35,10 @@ static site, zero build step.
 
 ## Commission form
 
-Builds a mailto:sharyn.kohen@gmail.com link from form fields (handler at the
-bottom of main.js). To switch to Netlify Forms instead: add
-data-netlify="true" and a hidden form-name input to the <form>, then delete
-the JS submit handler.
+Lives on commissions.html. Builds a mailto:sharyn.kohen@gmail.com link from
+form fields (handler is inline at the bottom of commissions.html). To switch
+to Netlify Forms instead: add data-netlify="true" and a hidden form-name
+input to the <form>, then delete the inline JS submit handler.
 
 ## Deploy
 

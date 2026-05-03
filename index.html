@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=iso1">
 </head>
 <body>
 
@@ -21,7 +21,7 @@
     <div class="nav-links">
       <a href="#work">Work</a>
       <a href="about.html">About</a>
-      <a href="#commissions" class="nav-cta">Commissions</a>
+      <a href="commissions.html" class="nav-cta">Commissions</a>
     </div>
   </nav>
 
@@ -53,36 +53,9 @@
       <button class="filter" data-filter="home" role="tab" aria-selected="false">Home Decor <sup>07</sup></button>
       <button class="filter" data-filter="totems" role="tab" aria-selected="false">Totems <sup>04</sup></button>
     </div>
-    <div class="gallery-grid" id="gallery-grid"></div>
-  </section>
-
-  <section class="commissions" id="commissions">
-    <div class="commissions-inner">
-      <div class="commissions-text reveal">
-        <p class="eyebrow eyebrow-light">Commissions</p>
-        <h2 class="section-title">Made to order.</h2>
-        <p>Have something in mind? I take on a handful of custom pieces each season &mdash; planters for the garden, vessels for the home, or something we figure out together. Tell me a bit about what you&rsquo;re after and I&rsquo;ll be in touch.</p>
-      </div>
-      <form class="inquiry reveal" id="inquiry">
-        <div class="field">
-          <label for="f-name">Name</label>
-          <input id="f-name" type="text" name="name" autocomplete="name" required>
-        </div>
-        <div class="field">
-          <label for="f-email">Email</label>
-          <input id="f-email" type="email" name="email" autocomplete="email" required>
-        </div>
-        <div class="field">
-          <label for="f-project">Project Description</label>
-          <input id="f-project" type="text" name="project" placeholder="e.g. Pair of garden planters, approx 30in">
-        </div>
-        <div class="field">
-          <label for="f-message">Message</label>
-          <textarea id="f-message" name="message" rows="5"></textarea>
-        </div>
-        <button type="submit" class="submit">Send Inquiry</button>
-        <p class="form-note">Opens your email app with a pre-filled message to Sharyn.</p>
-      </form>
+    <div class="gallery-grid" id="gallery-grid">
+      <div class="grid-sizer"></div>
+      <div class="gutter-sizer"></div>
     </div>
   </section>
 
@@ -92,7 +65,6 @@
     </div>
     <div class="footer-links">
       <a href="mailto:sharyn.kohen@gmail.com">sharyn.kohen@gmail.com</a>
-      <a href="#" aria-label="Instagram">Instagram</a>
     </div>
     <p class="footer-copy">&copy; 2026 Sharyn Kohen. All rights reserved.</p>
   </footer>
@@ -108,13 +80,15 @@
         <h3 id="lb-title">Category</h3>
         <dl class="lb-meta">
           <dt>Material</dt><dd>Stoneware, hand-built</dd>
-          <dt>Inquire</dt><dd><a href="#commissions" id="lb-inquire">Available &mdash; ask about this piece</a></dd>
+          <dt>Inquire</dt><dd><a href="commissions.html" id="lb-inquire">Available &mdash; ask about this piece</a></dd>
         </dl>
         <p class="lb-desc">Handmade ceramics born from vintage finds and garden landscapes.</p>
       </div>
     </div>
   </div>
 
-  <script src="main.js"></script>
+  <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+  <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+  <script src="main.js?v=iso1"></script>
 </body>
 </html>
