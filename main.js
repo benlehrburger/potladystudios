@@ -21,7 +21,8 @@
     { id: 17, cat: "garden", src: "images/garden/IMG_0199.jpg" },
     { id: 18, cat: "home",   src: "images/home/IMG_6817.jpeg" },
     { id: 19, cat: "garden", src: "images/garden/IMG_5706.jpg" },
-    { id: 20, cat: "garden", src: "images/garden/IMG_0217.jpg" }
+    { id: 20, cat: "garden", src: "images/garden/IMG_0217.jpg" },
+    { id: 21, cat: "home",   src: "images/home/IMG_tile_mosaic.jpeg" }
   ];
 
   var CAT_LABELS = { garden: "Garden Pieces", home: "Home Decor", totems: "Totems" };
