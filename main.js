@@ -2,7 +2,7 @@
   "use strict";
 
   var PIECES = [
-    { id: 1,  cat: "home",   src: "images/home/IMG_4905.jpg" },
+    { id: 1,  cat: "home",   src: "images/home/IMG_4905.jpg", caption: "coil orchid bowl" },
     { id: 2,  cat: "totems", src: "images/totems/IMG_5466.jpg" },
     { id: 3,  cat: "garden", src: "images/garden/IMG_0216.jpg" },
     { id: 4,  cat: "home",   src: "images/home/IMG_0275.jpg" },
@@ -34,9 +34,10 @@
     el.setAttribute("data-cat", p.cat);
     el.setAttribute("data-id", p.id);
     el.innerHTML =
-      '<img src="' + p.src + '" alt="' + CAT_LABELS[p.cat] + ' ' + p.id + '" loading="lazy">' +
+      '<img src="' + p.src + '" alt="' + (p.caption || (CAT_LABELS[p.cat] + ' ' + p.id)) + '" loading="lazy">' +
       '<figcaption>' +
         '<span class="piece-no">' + String(p.id).padStart(2, "0") + '</span>' +
+        (p.caption ? '<span class="piece-caption">' + p.caption + '</span>' : '') +
       '</figcaption>';
     el.addEventListener("click", function () { openLightbox(p.id); });
     grid.appendChild(el);

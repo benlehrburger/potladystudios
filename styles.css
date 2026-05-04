@@ -206,6 +206,13 @@ input, select, textarea { font: inherit; }
 }
 .piece:hover figcaption { opacity: 1; transform: translateY(0); }
 .piece-no { font-size: 0.7rem; letter-spacing: 0.14em; font-weight: 500; }
+.piece-caption {
+  font-family: "Cormorant", Georgia, serif;
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.2;
+  text-align: right;
+}
 
 /* ---------- About ---------- */
 .about {
@@ -504,6 +511,7 @@ input, select, textarea { font: inherit; }
   .gallery-grid .piece figcaption { opacity: 1; transform: none; padding: 0.6rem 0.7rem; }
   .gallery-grid .piece::after { opacity: 0.85; background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.4)); }
   .piece-no { font-size: 0.6rem; }
+  .piece-caption { font-size: 0.85rem; }
   .nav { padding: 1rem var(--gutter); }
   .nav-links { gap: 1.1rem; }
   .nav-links a { font-size: 0.64rem; letter-spacing: 0.12em; }
