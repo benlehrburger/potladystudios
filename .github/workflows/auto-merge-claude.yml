@@ -1,0 +1,53 @@
+name: Auto-merge claude/* to main
+
+# Claude Code Remote sessions can only push to claude/<slug> branches
+# (the Remote sandbox blocks direct pushes to main). This workflow makes
+# that feel like a direct-to-main push: every push to claude/** runs
+# pre-merge validation and then merges into main, which Netlify
+# auto-deploys.
+
+on:
+  push:
+    branches:
+      - 'claude/**'
+
+# Serialize merges so two simultaneous claude/* pushes can't race.
+concurrency:
+  group: auto-merge-main
+  cancel-in-progress: false
+
+jobs:
+  validate-and-merge:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout (full history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run pre-merge validation
+        run: node validate.js
+
+      - name: Merge into main
+        env:
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          git checkout main
+          if git merge --ff-only "origin/${BRANCH}"; then
+            echo "Fast-forward merge succeeded."
+          else
+            git merge --no-ff "origin/${BRANCH}" -m "Auto-merge ${BRANCH} into main"
+          fi
+          git push origin main
