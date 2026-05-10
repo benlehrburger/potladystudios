@@ -22,7 +22,11 @@
     { id: 18, cat: "home",   src: "images/home/IMG_6817.jpeg" },
     { id: 19, cat: "garden", src: "images/garden/IMG_5706.jpg" },
     { id: 20, cat: "garden", src: "images/garden/IMG_0217.jpg" },
-    { id: 21, cat: "home",   src: "images/home/IMG_tile_mosaic.jpeg" }
+    { id: 21, cat: "home",   src: "images/home/IMG_tile_mosaic.jpeg" },
+    { id: 22, cat: "home",   src: "images/home/IMG_candleholders_pair_portrait.jpeg" },
+    { id: 23, cat: "home",   src: "images/home/IMG_candleholders_pair_wide.jpeg" },
+    { id: 24, cat: "home",   src: "images/home/IMG_candleholder_textured.jpeg" },
+    { id: 25, cat: "home",   src: "images/home/IMG_candleholder_petals.jpeg" }
   ];
 
   var CAT_LABELS = { garden: "Garden Pieces", home: "Home Decor", totems: "Totems" };
