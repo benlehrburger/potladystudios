@@ -3,6 +3,8 @@
 
   var PIECES = [
     { id: 1,  cat: "home",   src: "images/home/IMG_4905.jpg", caption: "coil orchid bowl" },
+    { id: 13, cat: "home",   src: "images/home/IMG_6824.jpeg" },
+    { id: 15, cat: "home",   src: "images/home/IMG_4873.jpg" },
     { id: 2,  cat: "totems", src: "images/totems/IMG_5466.jpg" },
     { id: 3,  cat: "garden", src: "images/garden/IMG_0216.jpg" },
     { id: 4,  cat: "home",   src: "images/home/IMG_0275.jpg" },
@@ -15,9 +17,7 @@
     { id: 9,  cat: "home",   src: "images/home/IMG_0221.jpg" },
     { id: 10, cat: "garden", src: "images/garden/IMG_4944.jpg" },
     { id: 11, cat: "totems", src: "images/totems/IMG_0029.jpg" },
-    { id: 13, cat: "home",   src: "images/home/IMG_6824.jpeg" },
     { id: 14, cat: "garden", src: "images/garden/IMG_0212.jpg" },
-    { id: 15, cat: "home",   src: "images/home/IMG_4873.jpg" },
     { id: 16, cat: "totems", src: "images/totems/IMG_5467.jpg" },
     { id: 17, cat: "garden", src: "images/garden/IMG_0199.jpg" },
     { id: 19, cat: "garden", src: "images/garden/IMG_5706.jpg" },
