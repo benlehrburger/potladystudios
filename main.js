@@ -2,7 +2,7 @@
   "use strict";
 
   var PIECES = [
-    { id: 1,  cat: "home",   src: "images/home/IMG_4905.jpg", caption: "coil orchid bowl" },
+    { id: 1,  cat: "home",   src: "images/home/IMG_4905.jpg", caption: "Coil built orchid bowl planter" },
     { id: 13, cat: "home",   src: "images/home/IMG_6824.jpeg" },
     { id: 15, cat: "home",   src: "images/home/IMG_4873.jpg" },
     { id: 2,  cat: "totems", src: "images/totems/IMG_5466.jpg" },
