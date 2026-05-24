@@ -10,7 +10,7 @@
     { id: 6,  cat: "garden", src: "images/garden/IMG_0216.jpg" },
     { id: 7,  cat: "home",   src: "images/home/IMG_0275.jpg" },
     { id: 8,  cat: "garden", src: "images/garden/IMG_5534.jpg" },
-    { id: 9,  cat: "garden", src: "images/totems/IMG_5521.jpg" },
+    { id: 9,  cat: "garden", extraCats: ["totems"], src: "images/totems/IMG_5521.jpg" },
     { id: 10, cat: "home",   src: "images/home/IMG_6821.jpeg" },
     { id: 11, cat: "home",   src: "images/home/IMG_6817.jpeg" },
     { id: 12, cat: "garden", src: "images/garden/IMG_0202.jpg" },
@@ -32,9 +32,11 @@
   var CAT_LABELS = { garden: "Garden Pieces", home: "Home Decor", totems: "Totems" };
 
   var grid = document.getElementById("gallery-grid");
+  function catsOf(p) { return [p.cat].concat(p.extraCats || []); }
+
   PIECES.forEach(function (p) {
     var el = document.createElement("figure");
-    el.className = "piece";
+    el.className = "piece " + catsOf(p).map(function (c) { return "cat-" + c; }).join(" ");
     el.setAttribute("data-cat", p.cat);
     el.setAttribute("data-id", p.id);
     el.innerHTML =
@@ -74,7 +76,7 @@
       btn.classList.add("is-active");
       btn.setAttribute("aria-selected", "true");
       var f = btn.getAttribute("data-filter");
-      if (iso) iso.arrange({ filter: f === "all" ? "*" : '[data-cat="' + f + '"]' });
+      if (iso) iso.arrange({ filter: f === "all" ? "*" : ".cat-" + f });
     });
   });
 
@@ -89,7 +91,7 @@
 
   function openLightbox(pid) {
     var active = document.querySelector(".filter.is-active").getAttribute("data-filter");
-    visible = active === "all" ? PIECES.slice() : PIECES.filter(function (p) { return p.cat === active; });
+    visible = active === "all" ? PIECES.slice() : PIECES.filter(function (p) { return catsOf(p).indexOf(active) >= 0; });
     current = visible.findIndex(function (p) { return p.id === pid; });
     if (current < 0) current = 0;
     renderLb();

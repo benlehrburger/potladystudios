@@ -60,11 +60,12 @@ if (PIECES) {
   const html = read("index.html");
   const re = /data-filter="(\w+)"[^>]*>[^<]*<sup>\s*(\d+)\s*<\/sup>/g;
   const found = [...html.matchAll(re)].map(([, cat, n]) => [cat, parseInt(n, 10)]);
+  const inCat = (p, c) => p.cat === c || (p.extraCats || []).includes(c);
   const expected = {
     all: PIECES.length,
-    garden: PIECES.filter((p) => p.cat === "garden").length,
-    home: PIECES.filter((p) => p.cat === "home").length,
-    totems: PIECES.filter((p) => p.cat === "totems").length,
+    garden: PIECES.filter((p) => inCat(p, "garden")).length,
+    home: PIECES.filter((p) => inCat(p, "home")).length,
+    totems: PIECES.filter((p) => inCat(p, "totems")).length,
   };
   if (found.length !== 4) {
     fail(`Expected 4 filter buttons in index.html, found ${found.length}`);
@@ -233,7 +234,11 @@ if (hasImg && hasIso && (mainIdx < 0 || (isoIdx < mainIdx && imgIdx < mainIdx)))
 
 // ---- 13. Each gallery category in PIECES has a matching filter button ----
 if (PIECES) {
-  const cats = new Set(PIECES.map((p) => p.cat));
+  const cats = new Set();
+  PIECES.forEach((p) => {
+    cats.add(p.cat);
+    (p.extraCats || []).forEach((c) => cats.add(c));
+  });
   cats.forEach((c) => {
     if (!new RegExp(`data-filter="${c}"`).test(indexHtmlFull)) {
       fail(`PIECES has category "${c}" but no matching filter button in index.html`);
