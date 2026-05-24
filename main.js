@@ -38,11 +38,13 @@
     el.setAttribute("data-cat", p.cat);
     el.setAttribute("data-id", p.id);
     el.innerHTML =
-      '<img src="' + p.src + '" alt="' + (p.caption || (CAT_LABELS[p.cat] + ' ' + p.id)) + '" loading="lazy">' +
-      '<figcaption>' +
-        '<span class="piece-no">' + String(p.id).padStart(2, "0") + '</span>' +
-        (p.caption ? '<span class="piece-caption">' + p.caption + '</span>' : '') +
-      '</figcaption>';
+      '<div class="piece-media">' +
+        '<img src="' + p.src + '" alt="' + (p.caption || (CAT_LABELS[p.cat] + ' ' + p.id)) + '" loading="lazy">' +
+        '<figcaption>' +
+          '<span class="piece-no">' + String(p.id).padStart(2, "0") + '</span>' +
+        '</figcaption>' +
+      '</div>' +
+      (p.caption ? '<div class="piece-caption">' + p.caption + '</div>' : '');
     el.addEventListener("click", function () { openLightbox(p.id); });
     grid.appendChild(el);
   });

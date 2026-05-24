@@ -178,14 +178,17 @@ input, select, textarea { font: inherit; }
 .piece {
   position: relative;
   cursor: pointer;
-  overflow: hidden;
   margin-bottom: 1.5rem;
+}
+.piece-media {
+  position: relative;
+  overflow: hidden;
 }
 .piece img {
   width: 100%; height: auto; display: block;
   transition: transform 0.7s cubic-bezier(0.2, 0.6, 0.2, 1);
 }
-.piece::after {
+.piece-media::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.35));
   opacity: 0;
@@ -193,7 +196,7 @@ input, select, textarea { font: inherit; }
   pointer-events: none;
 }
 .piece:hover img { transform: scale(1.04); }
-.piece:hover::after { opacity: 1; }
+.piece:hover .piece-media::after { opacity: 1; }
 .piece figcaption {
   position: absolute; left: 0; right: 0; bottom: 0;
   padding: 1rem 1.15rem;
@@ -210,8 +213,10 @@ input, select, textarea { font: inherit; }
   font-family: "Cormorant", Georgia, serif;
   font-style: italic;
   font-size: 1rem;
-  line-height: 1.2;
-  text-align: right;
+  line-height: 1.3;
+  color: #000;
+  text-align: center;
+  padding: 0.65rem 0.5rem 0;
 }
 
 /* ---------- About ---------- */
@@ -509,7 +514,7 @@ input, select, textarea { font: inherit; }
   .gallery-grid .gutter-sizer { width: 0.75rem; }
   .gallery-grid .piece { margin-bottom: 0.75rem; }
   .gallery-grid .piece figcaption { opacity: 1; transform: none; padding: 0.6rem 0.7rem; }
-  .gallery-grid .piece::after { opacity: 0.85; background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.4)); }
+  .gallery-grid .piece-media::after { opacity: 0.85; background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.4)); }
   .piece-no { font-size: 0.6rem; }
   .piece-caption { font-size: 0.85rem; }
   .nav { padding: 1rem var(--gutter); }
