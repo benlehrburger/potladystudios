@@ -10,7 +10,7 @@
     { id: 6,  cat: "garden", src: "images/garden/IMG_0216.jpg" },
     { id: 7,  cat: "home",   src: "images/home/IMG_0275.jpg" },
     { id: 8,  cat: "garden", src: "images/garden/IMG_5534.jpg" },
-    { id: 9,  cat: "totems", src: "images/totems/IMG_5521.jpg" },
+    { id: 9,  cat: "garden", src: "images/totems/IMG_5521.jpg" },
     { id: 10, cat: "home",   src: "images/home/IMG_6821.jpeg" },
     { id: 11, cat: "home",   src: "images/home/IMG_6817.jpeg" },
     { id: 12, cat: "garden", src: "images/garden/IMG_0202.jpg" },
