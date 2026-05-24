@@ -79,13 +79,6 @@ input, select, textarea { font: inherit; }
 .nav-mark { display: flex; align-items: center; gap: 0.75rem; }
 .mark-img { height: 2.75rem; width: auto; }
 .nav.is-scrolled .mark-img { height: 2.3rem; }
-.mark-sign {
-  height: 2.4rem;
-  width: auto;
-  display: block;
-  transition: height 0.2s ease;
-}
-.nav.is-scrolled .mark-sign { height: 2rem; }
 .mark-text {
   font-family: var(--serif);
   font-size: 1.2rem;
