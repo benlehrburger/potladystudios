@@ -18,15 +18,17 @@
     { id: 14, cat: "home",   src: "images/home/IMG_6821.jpeg" },
     { id: 15, cat: "home",   src: "images/home/IMG_6817.jpeg" },
     { id: 16, cat: "home",   src: "images/home/IMG_0221.jpg" },
-    { id: 17, cat: "totems", src: "images/totems/IMG_0029.jpg" },
-    { id: 18, cat: "garden", src: "images/garden/IMG_0212.jpg" },
-    { id: 19, cat: "totems", src: "images/totems/IMG_5466.jpg" },
-    { id: 20, cat: "totems", src: "images/totems/IMG_5467.jpg" },
-    { id: 21, cat: "garden", src: "images/garden/IMG_0217.jpg" },
-    { id: 22, cat: "home",   src: "images/home/IMG_candleholders_pair_portrait.jpeg" },
-    { id: 23, cat: "home",   src: "images/home/IMG_candleholders_pair_wide.jpeg" },
-    { id: 24, cat: "home",   src: "images/home/IMG_candleholder_textured.jpeg" },
-    { id: 25, cat: "home",   src: "images/home/IMG_candleholder_petals.jpeg" }
+    { id: 17, cat: "totems", src: "images/totems/IMG_silver_totem_tall.jpg" },
+    { id: 18, cat: "totems", src: "images/totems/IMG_silver_totem_short.jpg" },
+    { id: 19, cat: "totems", src: "images/totems/IMG_0029.jpg" },
+    { id: 20, cat: "garden", src: "images/garden/IMG_0212.jpg" },
+    { id: 21, cat: "totems", src: "images/totems/IMG_5466.jpg" },
+    { id: 22, cat: "totems", src: "images/totems/IMG_5467.jpg" },
+    { id: 23, cat: "garden", src: "images/garden/IMG_0217.jpg" },
+    { id: 24, cat: "home",   src: "images/home/IMG_candleholders_pair_portrait.jpeg" },
+    { id: 25, cat: "home",   src: "images/home/IMG_candleholders_pair_wide.jpeg" },
+    { id: 26, cat: "home",   src: "images/home/IMG_candleholder_textured.jpeg" },
+    { id: 27, cat: "home",   src: "images/home/IMG_candleholder_petals.jpeg" }
   ];
 
   var CAT_LABELS = { garden: "Garden Pieces", home: "Home Decor", totems: "Totems" };
