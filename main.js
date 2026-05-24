@@ -3,7 +3,7 @@
 
   var PIECES = [
     { id: 1,  cat: "home",   src: "images/home/IMG_4905.jpg", caption: "Coil built orchid bowl planter" },
-    { id: 2,  cat: "home",   src: "images/home/IMG_6824.jpeg" },
+    { id: 2,  cat: "home",   src: "images/home/IMG_braided_bowl.jpg" },
     { id: 3,  cat: "home",   src: "images/home/IMG_4873.jpg" },
     { id: 4,  cat: "garden", src: "images/garden/IMG_0199.jpg" },
     { id: 5,  cat: "garden", src: "images/garden/IMG_0202.jpg" },
