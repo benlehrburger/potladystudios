@@ -33,8 +33,7 @@
     { id: 29, cat: "home",   src: "images/home/IMG_candlestick_pair_speckled.jpg", caption: "Pair of sculpted candlesticks" },
     { id: 30, cat: "totems", src: "images/totems/IMG_5466.jpg" },
     { id: 31, cat: "totems", src: "images/totems/IMG_5467.jpg" },
-    { id: 32, cat: "garden", src: "images/garden/IMG_0217.jpg" },
-    { id: 33, cat: "home",   src: "images/home/IMG_candleholders_pair_portrait.jpeg" }
+    { id: 32, cat: "home",   src: "images/home/IMG_candleholders_pair_portrait.jpeg" }
   ];
 
   var CAT_LABELS = { garden: "Garden Pieces", home: "Home Decor", totems: "Totems" };
