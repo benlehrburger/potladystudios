@@ -6,7 +6,7 @@
     { id: 2,  cat: "home",   src: "images/home/IMG_braided_bowl.jpg" },
     { id: 3,  cat: "home",   src: "images/home/IMG_4873.jpg" },
     { id: 4,  cat: "garden", src: "images/garden/IMG_0199.jpg" },
-    { id: 5,  cat: "garden", src: "images/garden/IMG_0202.jpg" },
+    { id: 5,  cat: "garden", src: "images/garden/IMG_0212.jpg" },
     { id: 6,  cat: "garden", src: "images/garden/IMG_0065.jpg" },
     { id: 7,  cat: "garden", src: "images/garden/IMG_0216.jpg" },
     { id: 8,  cat: "garden", src: "images/garden/IMG_5706.jpg" },
@@ -31,11 +31,10 @@
     { id: 27, cat: "totems", src: "images/totems/IMG_silver_totem_tall.jpg" },
     { id: 28, cat: "totems", src: "images/totems/IMG_silver_totem_short.jpg" },
     { id: 29, cat: "home",   src: "images/home/IMG_candlestick_pair_speckled.jpg", caption: "Pair of sculpted candlesticks" },
-    { id: 30, cat: "garden", src: "images/garden/IMG_0212.jpg" },
-    { id: 31, cat: "totems", src: "images/totems/IMG_5466.jpg" },
-    { id: 32, cat: "totems", src: "images/totems/IMG_5467.jpg" },
-    { id: 33, cat: "garden", src: "images/garden/IMG_0217.jpg" },
-    { id: 34, cat: "home",   src: "images/home/IMG_candleholders_pair_portrait.jpeg" }
+    { id: 30, cat: "totems", src: "images/totems/IMG_5466.jpg" },
+    { id: 31, cat: "totems", src: "images/totems/IMG_5467.jpg" },
+    { id: 32, cat: "garden", src: "images/garden/IMG_0217.jpg" },
+    { id: 33, cat: "home",   src: "images/home/IMG_candleholders_pair_portrait.jpeg" }
   ];
 
   var CAT_LABELS = { garden: "Garden Pieces", home: "Home Decor", totems: "Totems" };
