@@ -25,8 +25,7 @@
     { id: 21, cat: "totems", src: "images/totems/IMG_5466.jpg" },
     { id: 22, cat: "totems", src: "images/totems/IMG_5467.jpg" },
     { id: 23, cat: "garden", src: "images/garden/IMG_0217.jpg" },
-    { id: 24, cat: "home",   src: "images/home/IMG_candleholders_pair_portrait.jpeg" },
-    { id: 25, cat: "home",   src: "images/home/IMG_candleholder_solo.jpg" }
+    { id: 24, cat: "home",   src: "images/home/IMG_candleholders_pair_portrait.jpeg" }
   ];
 
   var CAT_LABELS = { garden: "Garden Pieces", home: "Home Decor", totems: "Totems" };
