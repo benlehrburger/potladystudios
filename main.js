@@ -20,7 +20,7 @@
     { id: 16, cat: "home",   src: "images/home/IMG_0221.jpg" },
     { id: 17, cat: "totems", src: "images/totems/IMG_silver_totem_tall.jpg" },
     { id: 18, cat: "totems", src: "images/totems/IMG_silver_totem_short.jpg" },
-    { id: 19, cat: "totems", src: "images/totems/IMG_0029.jpg" },
+    { id: 19, cat: "home",   src: "images/home/IMG_candlestick_pair_speckled.jpg", caption: "Pair of sculpted candlesticks" },
     { id: 20, cat: "garden", src: "images/garden/IMG_0212.jpg" },
     { id: 21, cat: "totems", src: "images/totems/IMG_5466.jpg" },
     { id: 22, cat: "totems", src: "images/totems/IMG_5467.jpg" },
