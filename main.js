@@ -23,7 +23,7 @@
     { id: 19, cat: "home",   src: "images/home/IMG_tile_mosaic.jpeg" },
     { id: 20, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_face_masks_tree.jpg", caption: "Ceramic face masks on a tree" },
     { id: 21, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_face_masks_tree_2.jpg" },
-    { id: 22, cat: "garden", extraCats: ["totems"], src: "images/totems/IMG_5521.jpg" },
+    { id: 22, cat: "garden", extraCats: ["totems"], src: "images/totems/IMG_totem_planter_column.jpg" },
     { id: 23, cat: "home",   src: "images/home/IMG_6821.jpeg" },
     { id: 24, cat: "home",   src: "images/home/IMG_6817.jpeg" },
     { id: 25, cat: "home",   src: "images/home/IMG_0221.jpg" },
