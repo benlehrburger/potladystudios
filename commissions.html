@@ -46,6 +46,7 @@
         <input type="hidden" name="subject" value="New commission inquiry — Pot Lady Studios">
         <input type="hidden" name="from_name" value="Pot Lady Studios Commissions">
         <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+        <p class="inquiry-error" id="inquiry-error" hidden>Something went wrong sending your note. Please try again, or email <a href="mailto:sharynkohen@gmail.com">sharynkohen@gmail.com</a> directly.</p>
         <div class="field">
           <label for="f-name">Name <span class="field-required" aria-hidden="true">*</span></label>
           <input id="f-name" type="text" name="name" autocomplete="name" required>
@@ -65,6 +66,10 @@
         <button type="submit" class="submit">Send Inquiry</button>
         <p class="form-note">Sharyn will reply by email within a few days.</p>
       </form>
+      <div class="inquiry-success reveal is-visible" id="inquiry-success" tabindex="-1" hidden>
+        <p class="inquiry-success-headline">Got it &mdash; thank you.</p>
+        <p class="inquiry-success-note">I&rsquo;ll reply by email within a few days.</p>
+      </div>
     </div>
   </section>
 
@@ -95,6 +100,35 @@
       }, { threshold: 0.12, rootMargin: "0px 0px -60px 0px" });
       document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
 
+      var form = document.getElementById("inquiry");
+      var success = document.getElementById("inquiry-success");
+      var errEl = document.getElementById("inquiry-error");
+      if (form && success) {
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          if (errEl) errEl.hidden = true;
+          var btn = form.querySelector(".submit");
+          var label = btn.textContent;
+          btn.disabled = true;
+          btn.textContent = "Sending…";
+          fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: new FormData(form)
+          })
+            .then(function (res) { return res.json().catch(function () { return {}; }); })
+            .then(function (data) {
+              if (!data || !data.success) throw new Error("submission failed");
+              form.hidden = true;
+              success.hidden = false;
+              success.focus();
+            })
+            .catch(function () {
+              btn.disabled = false;
+              btn.textContent = label;
+              if (errEl) errEl.hidden = false;
+            });
+        });
+      }
     })();
   </script>
 
