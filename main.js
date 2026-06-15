@@ -91,6 +91,7 @@
   var lb = document.getElementById("lightbox");
   var lbImg = document.getElementById("lb-img");
   var lbTitle = document.getElementById("lb-title");
+  var lbCaption = document.getElementById("lb-caption");
   var lbIdx = document.getElementById("lb-idx");
   var lbTotal = document.getElementById("lb-total");
   var lbInquire = document.getElementById("lb-inquire");
@@ -121,6 +122,7 @@
     lbImg.src = p.src;
     lbImg.alt = CAT_LABELS[p.cat] + " " + p.id;
     lbTitle.textContent = CAT_LABELS[p.cat];
+    lbCaption.textContent = p.caption || "";
     lbIdx.textContent = String(current + 1).padStart(2, "0");
     lbTotal.textContent = String(visible.length).padStart(2, "0");
   }

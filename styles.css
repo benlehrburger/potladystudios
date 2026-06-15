@@ -438,21 +438,14 @@ input, select, textarea { font: inherit; }
   line-height: 1.15;
   margin-bottom: 1.75rem;
 }
-.lb-meta {
-  display: grid; grid-template-columns: auto 1fr; gap: 0.6rem 1.75rem;
-  font-size: 0.88rem;
-  margin-bottom: 2rem;
-  padding: 1.4rem 0;
-  border-top: 1px solid rgba(27, 35, 32, 0.12);
-  border-bottom: 1px solid rgba(27, 35, 32, 0.12);
+.lb-caption {
+  color: var(--umber); font-size: 0.95rem; max-width: 30em;
+  margin-bottom: 1.5rem;
 }
-.lb-meta dt {
-  color: var(--umber); font-size: 0.7rem; letter-spacing: 0.12em;
-  text-transform: uppercase; align-self: center;
-}
-.lb-meta a { border-bottom: 1px solid var(--oxide); transition: color 0.2s ease; }
-.lb-meta a:hover { color: var(--oxide); }
-.lb-desc { color: var(--umber); font-size: 0.92rem; max-width: 30em; }
+.lb-caption:empty { display: none; }
+.lb-inquire-line { font-size: 0.92rem; }
+.lb-inquire-line a { border-bottom: 1px solid var(--oxide); transition: color 0.2s ease; }
+.lb-inquire-line a:hover { color: var(--oxide); }
 .lb-close, .lb-prev, .lb-next {
   position: absolute;
   width: 3rem; height: 3rem;
