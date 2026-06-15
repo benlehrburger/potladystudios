@@ -34,7 +34,8 @@
     { id: 30, cat: "totems", src: "images/totems/IMG_5466.jpg" },
     { id: 31, cat: "totems", src: "images/totems/IMG_5467.jpg" },
     { id: 32, cat: "home",   src: "images/home/IMG_candleholders_pair_portrait.jpeg" },
-    { id: 33, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_face_masks_tree_4.jpg", caption: "Ceramic face masks on a tree" }
+    { id: 33, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_face_masks_tree_4.jpg", caption: "Ceramic face masks on a tree" },
+    { id: 34, cat: "garden", src: "images/garden/IMG_ode_to_nala.jpg", caption: "Ode To Nala" }
   ];
 
   var CAT_LABELS = { garden: "Garden Pieces", home: "Home Decor", totems: "Totems" };
