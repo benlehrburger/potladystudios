@@ -350,6 +350,32 @@ input, select, textarea { font: inherit; }
 .submit:disabled { opacity: 0.5; cursor: default; }
 .form-note { font-size: 0.74rem; color: var(--umber-2); opacity: 0.7; }
 
+.inquiry-error {
+  color: var(--oxide);
+  font-size: 0.84rem;
+  margin: 0;
+}
+.inquiry-error a { color: inherit; text-decoration: underline; }
+.inquiry-success {
+  display: grid; gap: 1rem;
+  align-content: start;
+  outline: none;
+}
+.inquiry-success-headline {
+  font-family: "Cormorant", Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+  line-height: 1.2;
+  color: var(--bone);
+  margin: 0;
+}
+.inquiry-success-note {
+  color: var(--umber-2);
+  font-size: 0.95rem;
+  max-width: 30em;
+  margin: 0;
+}
+
 /* ---------- Footer ---------- */
 .footer {
   background: var(--char);

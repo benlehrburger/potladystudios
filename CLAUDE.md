@@ -249,6 +249,7 @@ needs photos, she asks in her email reply.
 Spam protection: a hidden `botcheck` honeypot field. If something fills
 it in, Web3Forms drops the submission silently.
 
-After submit, the user sees Web3Forms' generic success page. If we want
-a branded thank-you, add `<input type="hidden" name="redirect" value="...">`
-pointing at a thank-you page in the repo.
+Submission is AJAX (`fetch` in the page's inline script) — the form is
+swapped in-place for `#inquiry-success` on a `data.success === true`
+response, with an `#inquiry-error` message shown if the request fails.
+Users never leave the page.
