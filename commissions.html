@@ -41,8 +41,11 @@
         <h2 class="section-title">Let's make something new.</h2>
         <p>Send a few details about the piece you&rsquo;re envisioning (size, setting, anything that&rsquo;s inspiring you) and I&rsquo;ll be in touch.</p>
       </div>
-      <form class="inquiry reveal" id="inquiry" name="commission-inquiry" method="POST" data-netlify="true" enctype="multipart/form-data">
-        <input type="hidden" name="form-name" value="commission-inquiry">
+      <form class="inquiry reveal" id="inquiry" method="POST" action="https://api.web3forms.com/submit" enctype="multipart/form-data">
+        <input type="hidden" name="access_key" value="cf306f10-b3c1-4471-a8c5-974dda731b4b">
+        <input type="hidden" name="subject" value="New commission inquiry — Pot Lady Studios">
+        <input type="hidden" name="from_name" value="Pot Lady Studios Commissions">
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
         <div class="field">
           <label for="f-name">Name <span class="field-required" aria-hidden="true">*</span></label>
           <input id="f-name" type="text" name="name" autocomplete="name" required>
