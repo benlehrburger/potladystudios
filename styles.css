@@ -500,7 +500,7 @@ input, select, textarea { font: inherit; }
   .grid-sizer, .gallery-grid .piece { width: calc((100% - 1rem) / 2); }
   .gallery-grid .gutter-sizer { width: 1rem; }
   .gallery-grid .piece { margin-bottom: 1rem; }
-  .lb-content { grid-template-columns: 1fr; overflow-y: auto; align-items: start; gap: 2rem; padding-top: 5rem; }
+  .lb-content { grid-template-columns: 1fr; overflow-y: auto; align-items: start; gap: 2rem; padding-top: 5rem; padding-bottom: 6rem; }
   #lb-img { max-height: 48vh; }
 }
 @media (max-width: 720px) {
