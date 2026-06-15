@@ -26,7 +26,7 @@ import sys
 import glob
 
 try:
-    from PIL import Image
+    from PIL import Image, ImageOps
 except ImportError:
     sys.exit(
         "Pillow is required. Install it with:  pip install Pillow\n"
@@ -48,6 +48,10 @@ def thumb_path(full_path):
 
 
 def save_jpeg(im, dest, max_edge, quality):
+    # Bake any EXIF orientation into the pixels BEFORE stripping metadata —
+    # otherwise a photo the phone stored sideways (with a rotate flag) would
+    # display sideways once the flag is gone.
+    im = ImageOps.exif_transpose(im)
     im = im.convert("RGB")  # drop alpha / EXIF so nothing rotates or bloats
     w, h = im.size
     if max(w, h) > max_edge:
