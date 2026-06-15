@@ -200,17 +200,17 @@ if (!missingIds) ok("All getElementById calls match an actual id");
 // ---- 11. Commission form attributes intact ----
 const cf = read("commissions.html");
 const formChecks = [
-  ['data-netlify="true"', "Netlify Forms attribute"],
-  ['name="commission-inquiry"', "form name"],
+  ['action="https://api.web3forms.com/submit"', "Web3Forms submit endpoint"],
+  ['name="access_key"', "Web3Forms access_key hidden input"],
   ['enctype="multipart/form-data"', "multipart encoding (file uploads)"],
-  ['name="form-name" value="commission-inquiry"', "hidden form-name input"],
+  ['name="botcheck"', "honeypot field"],
   ['type="file"', "file input"],
   ["multiple", "multiple-files attribute on file input"],
 ];
 let formIssues = 0;
 formChecks.forEach(([needle, desc]) => {
   if (!cf.includes(needle)) {
-    fail(`commissions.html: missing ${desc} — Netlify Forms will silently break`);
+    fail(`commissions.html: missing ${desc} — form submissions will silently break`);
     formIssues++;
   }
 });
