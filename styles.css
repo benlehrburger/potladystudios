@@ -546,6 +546,8 @@ input, select, textarea { font: inherit; }
   .commissions-lede { font-size: 1.2rem; }
   .commissions-map { max-width: 420px; margin: 0 auto; }
 
+  /* Hide the Work heading on mobile (still in the nav menu) */
+  .work .section-head { display: none; }
   .filters { gap: 0.5rem 1.4rem; }
   .footer { flex-direction: column; text-align: center; }
   .lb-prev, .lb-next { top: auto; bottom: 1rem; transform: none; }
