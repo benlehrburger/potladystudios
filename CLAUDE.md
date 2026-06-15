@@ -106,7 +106,8 @@ it still feels like a direct push.
 Earlier versions of this doc told you to "always push to `main`" and
 ignore the session-injected feature branch. That guidance is now wrong —
 the proxy will 403 every push to `main`. Stay on the `claude/<slug>`
-branch the session put you on and trust the workflow.
+branch the session put you on and let the workflow do the merge — but
+**verify it actually landed; never assume it will** (see step 4 below).
 
 **After every change Sharyn approves, you must:**
 
@@ -119,8 +120,32 @@ branch the session put you on and trust the workflow.
    to `main` — it will 403. Do **not** open a PR; the workflow does the
    merge automatically.
 3. Push to that same `claude/<slug>` branch (`git push -u origin HEAD`).
-4. Tell Sharyn the change should go live in 2–3 minutes and that she
-   can refresh **potladystudios.com** in her browser to see it.
+4. **Loop and watch the change all the way to live — do not stop at
+   "pushed."** A push only puts the commit on the `claude/<slug>`
+   branch; it is not on the site yet. Poll until you have confirmed,
+   with your own eyes on the data, both of these:
+   - **The auto-merge landed.** Fetch `main` (`git fetch origin main`)
+     and confirm your commit is actually on it — or check the
+     `auto-merge-claude.yml` run for your branch in GitHub Actions and
+     confirm it finished **success**. A green push is not a merge.
+   - **GitHub Pages republished.** Confirm the "pages build and
+     deployment" run for the new `main` commit finished **success** —
+     that's the run that actually puts the change on
+     potladystudios.com.
+
+   Check, wait a short bit (the whole chain is usually ~30s merge +
+   ~1 min Pages), check again, and keep looping until both are
+   confirmed. Don't block on long `sleep`s — poll, then re-check. Give
+   it a few minutes of polling before you conclude something's wrong.
+   If the auto-merge run **fails** (validation error, merge conflict)
+   or the Pages run **fails**, the change is NOT live — handle it
+   (fix and re-push, revert, or escalate per the sections below)
+   instead of telling Sharyn it's done.
+5. **Only once both are confirmed**, tell Sharyn the change is live and
+   hand her the link to refresh: <https://potladystudios.com/> (or the
+   specific page). If you genuinely can't confirm after several minutes
+   of polling, tell her it's taking longer than usual and you're
+   keeping an eye on it — don't claim it's live on faith.
 
 If the auto-merge workflow fails (validation error, merge conflict),
 the change never reaches `main` and the live site will not update. Even
