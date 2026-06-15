@@ -3,7 +3,7 @@
 Portfolio site for Sharyn Kohen's hand-built ceramics practice. Multi-page
 static site (index / about / commissions), zero build step.
 
-Live: https://potladystudios.netlify.app
+Live: https://potladystudios.com
 
 ## Who works on this site
 
@@ -24,7 +24,7 @@ loop. She iterates by:
 
 1. Asking you for a change in a Claude Code Remote (cloud) session
 2. You commit and push; the auto-merge workflow lands it on `main`
-3. She refreshes **https://potladystudios.netlify.app** in her browser
+3. She refreshes **https://potladystudios.com** in her browser
 4. If it's wrong, she comes back and asks again
 
 She is **often on her phone**, not a laptop. That means:
@@ -37,8 +37,12 @@ She is **often on her phone**, not a laptop. That means:
   available on her phone.
 - A normal browser refresh is the only debugging tool she has. If a
   change isn't visible after a refresh, the most likely causes are
-  (a) the deploy hasn't finished yet — wait 1–2 minutes, or (b) the push
-  didn't go through — check `git status` on your end.
+  (a) the deploy hasn't finished yet — GitHub Pages usually publishes
+  within ~1 minute of the change landing on `main`, so wait a minute or
+  two, or (b) the push didn't go through — check `git status` on your
+  end. If it still hasn't updated after a few minutes, check the Actions
+  tab on GitHub (the auto-merge run and the Pages "pages build and
+  deployment" run); there is no Netlify dashboard to look at anymore.
 
 This is also why we have a push-and-go pipeline that lands changes on
 `main` automatically: it's the only path that gets her change in front
@@ -72,10 +76,10 @@ Some of these are repeats but bear emphasizing:
 - **Link to the live site, don't just name it.** Sharyn doesn't always
   know where her changes end up or how to get there. Whenever you'd
   refer to "the live site" or "your site," write the actual URL as a
-  clickable link instead: <https://potladystudios.netlify.app/>. Same
+  clickable link instead: <https://potladystudios.com/>. Same
   for specific pages — link
-  <https://potladystudios.netlify.app/about.html> or
-  <https://potladystudios.netlify.app/commissions.html> rather than
+  <https://potladystudios.com/about.html> or
+  <https://potladystudios.com/commissions.html> rather than
   saying "the about page." Every "go check it" message should hand
   her a link she can tap.
 - **You cannot ask Ben yourself.** If something is blocked, tell Sharyn to
@@ -83,17 +87,21 @@ Some of these are repeats but bear emphasizing:
 
 ## Deployment workflow
 
-The Netlify pipeline auto-deploys whatever lands on `main` to
-https://potladystudios.netlify.app. There is no separate review or
-release step.
+The site deploys via **GitHub Pages**, which serves whatever lands on
+`main` directly at https://potladystudios.com (the domain is set by the
+`CNAME` file in the repo root; `www.potladystudios.com` redirects to the
+apex). There is no separate review or release step, and no Netlify
+anymore — Netlify has been fully deactivated.
 
 **About the branch you're on:** Claude Code Remote sessions cannot push
 directly to `main` — the Remote sandbox returns 403. Each session is
 assigned a `claude/<slug>` branch and pushes go there. A GitHub Actions
 workflow (`.github/workflows/auto-merge-claude.yml`) watches `claude/**`,
 re-runs `node validate.js`, and fast-forwards (or merges) into `main`.
-End-to-end this takes ~30s, then Netlify takes another 1–2 min to
-deploy. So from Sharyn's perspective it still feels like a direct push.
+Once it's on `main`, GitHub Pages rebuilds and publishes (a "pages build
+and deployment" run in the Actions tab). End-to-end this takes ~30s for
+the merge plus ~1 min for Pages to go live. So from Sharyn's perspective
+it still feels like a direct push.
 
 Earlier versions of this doc told you to "always push to `main`" and
 ignore the session-injected feature branch. That guidance is now wrong —
@@ -112,12 +120,15 @@ branch the session put you on and trust the workflow.
    merge automatically.
 3. Push to that same `claude/<slug>` branch (`git push -u origin HEAD`).
 4. Tell Sharyn the change should go live in 2–3 minutes and that she
-   can refresh **potladystudios.netlify.app** in her browser to see it.
+   can refresh **potladystudios.com** in her browser to see it.
 
 If the auto-merge workflow fails (validation error, merge conflict),
-the live site will not update. Check the Actions tab on GitHub to see
-what failed; if it's a merge conflict you can't resolve from inside
-Remote, escalate to Ben.
+the change never reaches `main` and the live site will not update. Even
+after a clean merge, the GitHub Pages "pages build and deployment" run
+has to finish before the site changes. Check the Actions tab on GitHub
+to see where it stalled (the auto-merge run, then the Pages run); if
+it's a merge conflict you can't resolve from inside Remote, escalate to
+Ben.
 
 Sharyn cannot run terminal commands, merge PRs, or preview changes
 locally. If you skip the push, the change never reaches her — the live
@@ -173,8 +184,9 @@ Tell Sharyn to message Ben when:
   tried once (do **not** try pushing to `main` — that's expected to 403)
 - The auto-merge workflow keeps failing (check the Actions tab) and
   it's not something you can fix from inside Remote
-- The Netlify deploy is failing repeatedly (build errors, form detection
-  not picking up, etc.)
+- The GitHub Pages deploy is failing repeatedly, or the site stops
+  resolving at potladystudios.com (a Pages/DNS issue — check the Pages
+  settings and the "pages build and deployment" runs in the Actions tab)
 - The request would require new infrastructure she can't approve on her
   own (a database, headless CMS, paid service upgrade, custom domain DNS)
 - You've gotten into a state where you'd want a human to look at the repo
@@ -202,7 +214,7 @@ own — could you ping Ben to take a look?" Don't alarm her; just hand off.
     main.js           index.html only — PIECES + gallery render, lightbox
     images/admin/     logo, profile, ny-locations map (admin-only assets)
     images/garden|home|totems/  gallery photos
-    netlify.toml      publish = "."
+    CNAME             custom domain for GitHub Pages (potladystudios.com)
 
 Each page has its own inline `<script>` for nav-scroll state and reveal
 animations. `main.js` is loaded only on `index.html` (it errors if
@@ -235,11 +247,11 @@ Confirm with her first, then delete the file and remove its entry from
 ## Commission form
 
 Lives on `commissions.html`. Posts to **Web3Forms**
-(`https://api.web3forms.com/submit`) — chosen over Netlify Forms so
-hosting can move off Netlify without changing the form pipeline. The
-public `access_key` is in the HTML; submissions get emailed directly to
-the address tied to that key (Sharyn's). No dashboard/notification config
-needed.
+(`https://api.web3forms.com/submit`) — deliberately host-independent, so
+the move off Netlify to GitHub Pages didn't touch the form pipeline at
+all. The public `access_key` is in the HTML; submissions get emailed
+directly to the address tied to that key (Sharyn's). No
+dashboard/notification config needed.
 
 **No file attachments.** Web3Forms paywalls file uploads (Pro feature),
 and the free alternatives all paywall it too. The form asks inquirers

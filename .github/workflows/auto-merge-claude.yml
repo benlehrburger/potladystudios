@@ -3,8 +3,8 @@ name: Auto-merge claude/* to main
 # Claude Code Remote sessions can only push to claude/<slug> branches
 # (the Remote sandbox blocks direct pushes to main). This workflow makes
 # that feel like a direct-to-main push: every push to claude/** runs
-# pre-merge validation and then merges into main, which Netlify
-# auto-deploys.
+# pre-merge validation and then merges into main, which GitHub Pages
+# serves at potladystudios.com.
 
 on:
   push:
