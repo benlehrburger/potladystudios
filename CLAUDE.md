@@ -3,7 +3,7 @@
 Portfolio site for Sharyn Kohen's hand-built ceramics practice. Multi-page
 static site (index / about / commissions), zero build step.
 
-Live: https://potladystudios.netlify.app
+Live: https://potladystudios.com
 
 ## Who works on this site
 
@@ -24,7 +24,7 @@ loop. She iterates by:
 
 1. Asking you for a change in a Claude Code Remote (cloud) session
 2. You commit and push; the auto-merge workflow lands it on `main`
-3. She refreshes **https://potladystudios.netlify.app** in her browser
+3. She refreshes **https://potladystudios.com** in her browser
 4. If it's wrong, she comes back and asks again
 
 She is **often on her phone**, not a laptop. That means:
@@ -72,10 +72,10 @@ Some of these are repeats but bear emphasizing:
 - **Link to the live site, don't just name it.** Sharyn doesn't always
   know where her changes end up or how to get there. Whenever you'd
   refer to "the live site" or "your site," write the actual URL as a
-  clickable link instead: <https://potladystudios.netlify.app/>. Same
+  clickable link instead: <https://potladystudios.com/>. Same
   for specific pages — link
-  <https://potladystudios.netlify.app/about.html> or
-  <https://potladystudios.netlify.app/commissions.html> rather than
+  <https://potladystudios.com/about.html> or
+  <https://potladystudios.com/commissions.html> rather than
   saying "the about page." Every "go check it" message should hand
   her a link she can tap.
 - **You cannot ask Ben yourself.** If something is blocked, tell Sharyn to
@@ -83,17 +83,19 @@ Some of these are repeats but bear emphasizing:
 
 ## Deployment workflow
 
-The Netlify pipeline auto-deploys whatever lands on `main` to
-https://potladystudios.netlify.app. There is no separate review or
-release step.
+The site is hosted on **GitHub Pages**. Anything that lands on `main`
+auto-deploys to https://potladystudios.com. There is no separate review
+or release step. The custom domain is pinned by the `CNAME` file at the
+repo root — don't delete or rename it.
 
 **About the branch you're on:** Claude Code Remote sessions cannot push
 directly to `main` — the Remote sandbox returns 403. Each session is
 assigned a `claude/<slug>` branch and pushes go there. A GitHub Actions
 workflow (`.github/workflows/auto-merge-claude.yml`) watches `claude/**`,
 re-runs `node validate.js`, and fast-forwards (or merges) into `main`.
-End-to-end this takes ~30s, then Netlify takes another 1–2 min to
-deploy. So from Sharyn's perspective it still feels like a direct push.
+End-to-end the merge takes ~30s, then Pages takes another ~30–60s to
+build and serve. So from Sharyn's perspective it still feels like a
+direct push.
 
 Earlier versions of this doc told you to "always push to `main`" and
 ignore the session-injected feature branch. That guidance is now wrong —
@@ -112,7 +114,7 @@ branch the session put you on and trust the workflow.
    merge automatically.
 3. Push to that same `claude/<slug>` branch (`git push -u origin HEAD`).
 4. Tell Sharyn the change should go live in 2–3 minutes and that she
-   can refresh **potladystudios.netlify.app** in her browser to see it.
+   can refresh **potladystudios.com** in her browser to see it.
 
 If the auto-merge workflow fails (validation error, merge conflict),
 the live site will not update. Check the Actions tab on GitHub to see
@@ -173,8 +175,8 @@ Tell Sharyn to message Ben when:
   tried once (do **not** try pushing to `main` — that's expected to 403)
 - The auto-merge workflow keeps failing (check the Actions tab) and
   it's not something you can fix from inside Remote
-- The Netlify deploy is failing repeatedly (build errors, form detection
-  not picking up, etc.)
+- GitHub Pages is failing to build/serve, or the custom domain stops
+  resolving (DNS issues at the registrar are Ben's territory)
 - The request would require new infrastructure she can't approve on her
   own (a database, headless CMS, paid service upgrade, custom domain DNS)
 - You've gotten into a state where you'd want a human to look at the repo
@@ -202,12 +204,12 @@ own — could you ping Ben to take a look?" Don't alarm her; just hand off.
     main.js           index.html only — PIECES + gallery render, lightbox
     images/admin/     logo, profile, ny-locations map (admin-only assets)
     images/garden|home|totems/  gallery photos
-    netlify.toml      publish = "."
+    CNAME             custom domain pin for GitHub Pages
 
 Each page has its own inline `<script>` for nav-scroll state and reveal
 animations. `main.js` is loaded only on `index.html` (it errors if
 `gallery-grid` isn't in the DOM). `commissions.html` has its own inline
-script for the file-input label and form reset.
+script for the AJAX form submit + inline confirmation/error states.
 
 ## Common tasks
 
@@ -235,11 +237,10 @@ Confirm with her first, then delete the file and remove its entry from
 ## Commission form
 
 Lives on `commissions.html`. Posts to **Web3Forms**
-(`https://api.web3forms.com/submit`) — chosen over Netlify Forms so
-hosting can move off Netlify without changing the form pipeline. The
-public `access_key` is in the HTML; submissions get emailed directly to
-the address tied to that key (Sharyn's). No dashboard/notification config
-needed.
+(`https://api.web3forms.com/submit`). The public `access_key` is in the
+HTML; submissions get emailed directly to the address tied to that key
+(Sharyn's). No dashboard/notification config needed — picked specifically
+so the static-site deploy doesn't need a server-side form handler.
 
 **No file attachments.** Web3Forms paywalls file uploads (Pro feature),
 and the free alternatives all paywall it too. The form asks inquirers
@@ -249,7 +250,8 @@ needs photos, she asks in her email reply.
 Spam protection: a hidden `botcheck` honeypot field. If something fills
 it in, Web3Forms drops the submission silently.
 
-Submission is AJAX (`fetch` in the page's inline script) — the form is
-swapped in-place for `#inquiry-success` on a `data.success === true`
-response, with an `#inquiry-error` message shown if the request fails.
-Users never leave the page.
+Submission is AJAX (`fetch` in the page's inline script) — on success
+the submit button disables and re-labels to "Sent" and an inline
+`#inquiry-success` confirmation appears below it; on failure an
+`#inquiry-error` line appears above the fields and the button re-enables
+for retry. Users never leave the page.

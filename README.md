@@ -3,7 +3,7 @@
 Portfolio website for **Pot Lady Studios** — handmade ceramics by Sharyn Kohen,
 born from vintage finds and garden landscapes.
 
-**Live:** https://potladystudios.netlify.app
+**Live:** https://potladystudios.com
 
 ## Stack
 
@@ -17,7 +17,9 @@ Open index.html directly in a browser, or serve the directory:
 
 ## Deploy
 
-    netlify deploy --prod --dir .
+Hosted on **GitHub Pages**. Anything that lands on `main` auto-deploys to
+https://potladystudios.com within ~1 minute. The `CNAME` file at the repo
+root pins the custom domain.
 
 ## Maintenance
 
