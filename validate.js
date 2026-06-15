@@ -276,6 +276,53 @@ heavyImages.forEach((img) => {
 });
 if (!heavyImages.length) ok("All images under 1MB");
 
+// ---- 16. Every gallery image is optimized (grid thumbnail + capped size) ----
+// Enforces the optimize-images.py pipeline: each piece needs a lightweight
+// thumbnail for the grid, and full files must stay within the size cap so the
+// lightbox loads fast. A new photo added without running the optimizer fails
+// here, so it can't reach the live site un-optimized.
+function jpegSize(absPath) {
+  const buf = fs.readFileSync(absPath);
+  if (buf[0] !== 0xff || buf[1] !== 0xd8) return null; // not a JPEG
+  let off = 2;
+  while (off + 9 < buf.length) {
+    if (buf[off] !== 0xff) { off++; continue; }
+    const marker = buf[off + 1];
+    const isSOF =
+      marker >= 0xc0 && marker <= 0xcf &&
+      marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc;
+    if (isSOF) return { height: buf.readUInt16BE(off + 5), width: buf.readUInt16BE(off + 7) };
+    if (marker === 0xd8 || marker === 0xd9 || (marker >= 0xd0 && marker <= 0xd7)) { off += 2; continue; }
+    off += 2 + buf.readUInt16BE(off + 2);
+  }
+  return null;
+}
+const FULL_MAX_EDGE = 1600;
+const THUMB_MAX_EDGE = 900;
+function thumbOf(src) { return src.replace(/\/([^/]+)$/, "/thumbs/$1"); }
+if (PIECES) {
+  let imgIssues = 0;
+  PIECES.forEach((p) => {
+    if (!p.src || !exists(p.src)) return; // already reported in check 3
+    const thumb = thumbOf(p.src);
+    if (!exists(thumb)) {
+      fail(`${p.src} has no grid thumbnail (${thumb}) — run: python3 optimize-images.py`);
+      imgIssues++;
+      return;
+    }
+    const full = jpegSize(path.join(root, p.src));
+    if (full && Math.max(full.width, full.height) > FULL_MAX_EDGE + 8) {
+      fail(`${p.src} is ${full.width}x${full.height}, over the ${FULL_MAX_EDGE}px cap — run: python3 optimize-images.py`);
+      imgIssues++;
+    }
+    const t = jpegSize(path.join(root, thumb));
+    if (t && Math.max(t.width, t.height) > THUMB_MAX_EDGE + 8) {
+      warn(`${thumb} is ${t.width}x${t.height}, larger than the ${THUMB_MAX_EDGE}px thumbnail size — run: python3 optimize-images.py --force`);
+    }
+  });
+  if (!imgIssues) ok("All gallery images optimized (thumbnail + size cap)");
+}
+
 // ---- Output ----
 console.log("");
 passes.forEach((m) => console.log("  [ok]   " + m));
