@@ -64,12 +64,11 @@
           <textarea id="f-message" name="message" rows="5" placeholder="Anything else — paste links to reference images if you have any."></textarea>
         </div>
         <button type="submit" class="submit">Send Inquiry</button>
-        <p class="form-note">Sharyn will reply by email within a few days.</p>
+        <div class="inquiry-success" id="inquiry-success" tabindex="-1" hidden>
+          <p class="inquiry-success-headline">Got it &mdash; thank you.</p>
+          <p class="inquiry-success-note">sharynkohen@gmail.com will reply by email within a few days.</p>
+        </div>
       </form>
-      <div class="inquiry-success reveal is-visible" id="inquiry-success" tabindex="-1" hidden>
-        <p class="inquiry-success-headline">Got it &mdash; thank you.</p>
-        <p class="inquiry-success-note">I&rsquo;ll reply by email within a few days.</p>
-      </div>
     </div>
   </section>
 
@@ -118,7 +117,7 @@
             .then(function (res) { return res.json().catch(function () { return {}; }); })
             .then(function (data) {
               if (!data || !data.success) throw new Error("submission failed");
-              form.hidden = true;
+              btn.textContent = "Sent";
               success.hidden = false;
               success.focus();
             })
