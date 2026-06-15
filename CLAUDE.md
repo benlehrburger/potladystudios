@@ -183,6 +183,10 @@ phone. It checks:
   rule in `styles.css` (warning only — false positives are possible)
 - Image weight: warns on any file > 1MB so the gallery stays fast on
   mobile (warning only)
+- Every gallery piece has a generated grid thumbnail in `thumbs/` and its
+  full file is within the 1600px cap — i.e. `optimize-images.py` was run
+  for any newly added photo (a missing thumbnail or oversized full is a
+  failure, so un-optimized images can't reach the live site)
 
 **Failures** must be fixed before pushing. **Warnings** are advisory —
 the push is allowed but worth reviewing.
@@ -237,8 +241,10 @@ own — could you ping Ben to take a look?" Don't alarm her; just hand off.
     commissions.html  commissions: intro + map + inquiry form
     styles.css        all styles, CSS custom properties at :root
     main.js           index.html only — PIECES + gallery render, lightbox
+    optimize-images.py  resize + thumbnail generator for gallery photos
     images/admin/     logo, profile, ny-locations map (admin-only assets)
-    images/garden|home|totems/  gallery photos
+    images/garden|home|totems/        full-res gallery photos (lightbox)
+    images/garden|home|totems/thumbs/ grid thumbnails (auto-generated)
     CNAME             custom domain for GitHub Pages (potladystudios.com)
 
 Each page has its own inline `<script>` for nav-scroll state and reveal
@@ -254,20 +260,37 @@ Sharyn will typically just send an image (or describe one she wants
 added) and say which category it belongs to (Garden, Home, or Totems).
 
 1. Save the image to `images/garden|home|totems/` (whichever category)
-2. Append `{ id, cat, src }` to the `PIECES` array in `main.js` — the
+2. **Run `python3 optimize-images.py`** (one command, no arguments). This
+   right-sizes the new full photo (progressive JPEG, longest edge ≤1600px,
+   quality 90 — visually lossless) and generates the matching grid
+   thumbnail in `images/<cat>/thumbs/`. It only touches photos that don't
+   have a thumbnail yet, so it's safe to run anytime and won't re-compress
+   (and degrade) existing pieces. This step is **required** — `validate.js`
+   fails if a piece is missing its thumbnail or the full exceeds 1600px,
+   so an un-optimized image can't reach the live site.
+3. Append `{ id, cat, src }` to the `PIECES` array in `main.js` — the
    `id` is the next number in sequence (1–20+ across all categories,
-   not per category)
-3. Bump the `<sup>` count on **All** and the matching category filter in
+   not per category). `src` is the **full** path
+   (`images/<cat>/IMG_x.jpg`); the grid derives the thumbnail path itself,
+   and the lightbox loads the full file.
+4. Bump the `<sup>` count on **All** and the matching category filter in
    `index.html`
 
-If she sends a high-resolution photo, downscale it first with `sips`
-(it's preinstalled on macOS): `sips -Z 1600 path.jpg --setProperty
-formatOptions 78 -o path.jpg`. Each gallery image should be under ~1MB.
+How the two sizes are used: the gallery grid loads the small
+`thumbs/` version (fast); tapping a piece opens the full-resolution file
+in the lightbox. At grid size the thumbnail is indistinguishable from the
+original, so there's no visible quality loss. If Pillow isn't installed,
+`optimize-images.py` will tell you to run `pip install Pillow` first.
+
+(If you ever need to re-process every photo — e.g. after changing the
+size/quality settings at the top of `optimize-images.py` — run
+`python3 optimize-images.py --force`.)
 
 ### Removing a piece
 
-Confirm with her first, then delete the file and remove its entry from
-`PIECES`. Bump the filter `<sup>` counts down.
+Confirm with her first, then delete both the full file **and** its
+thumbnail in `images/<cat>/thumbs/`, and remove its entry from `PIECES`.
+Bump the filter `<sup>` counts down.
 
 ## Commission form
 
