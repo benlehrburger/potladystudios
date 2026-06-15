@@ -201,10 +201,7 @@ const cf = read("commissions.html");
 const formChecks = [
   ['action="https://api.web3forms.com/submit"', "Web3Forms submit endpoint"],
   ['name="access_key"', "Web3Forms access_key hidden input"],
-  ['enctype="multipart/form-data"', "multipart encoding (file uploads)"],
   ['name="botcheck"', "honeypot field"],
-  ['type="file"', "file input"],
-  ["multiple", "multiple-files attribute on file input"],
 ];
 let formIssues = 0;
 formChecks.forEach(([needle, desc]) => {

@@ -41,7 +41,7 @@
         <h2 class="section-title">Let's make something new.</h2>
         <p>Send a few details about the piece you&rsquo;re envisioning (size, setting, anything that&rsquo;s inspiring you) and I&rsquo;ll be in touch.</p>
       </div>
-      <form class="inquiry reveal" id="inquiry" method="POST" action="https://api.web3forms.com/submit" enctype="multipart/form-data">
+      <form class="inquiry reveal" id="inquiry" method="POST" action="https://api.web3forms.com/submit">
         <input type="hidden" name="access_key" value="cf306f10-b3c1-4471-a8c5-974dda731b4b">
         <input type="hidden" name="subject" value="New commission inquiry — Pot Lady Studios">
         <input type="hidden" name="from_name" value="Pot Lady Studios Commissions">
@@ -60,15 +60,7 @@
         </div>
         <div class="field">
           <label for="f-message">Message</label>
-          <textarea id="f-message" name="message" rows="5"></textarea>
-        </div>
-        <div class="field field-file">
-          <label for="f-images">Reference Images <span class="field-optional">(optional)</span></label>
-          <input id="f-images" type="file" name="images" multiple accept="image/*">
-          <label for="f-images" class="file-trigger">
-            <span class="file-trigger-text">Choose images</span>
-            <span class="file-list" id="f-images-list">No files selected</span>
-          </label>
+          <textarea id="f-message" name="message" rows="5" placeholder="Anything else — paste links to reference images if you have any."></textarea>
         </div>
         <button type="submit" class="submit">Send Inquiry</button>
         <p class="form-note">Sharyn will reply by email within a few days.</p>
@@ -103,39 +95,6 @@
       }, { threshold: 0.12, rootMargin: "0px 0px -60px 0px" });
       document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
 
-      var fileInput = document.getElementById("f-images");
-      var fileList = document.getElementById("f-images-list");
-      if (fileInput && fileList) {
-        var collected = new DataTransfer();
-
-        function updateLabel() {
-          var n = fileInput.files.length;
-          if (n === 0) fileList.textContent = "No files selected";
-          else if (n === 1) fileList.textContent = fileInput.files[0].name;
-          else fileList.textContent = n + " files selected";
-        }
-
-        fileInput.addEventListener("change", function () {
-          var seen = {};
-          for (var i = 0; i < collected.files.length; i++) {
-            var f = collected.files[i];
-            seen[f.name + "_" + f.size] = true;
-          }
-          for (var j = 0; j < fileInput.files.length; j++) {
-            var nf = fileInput.files[j];
-            if (!seen[nf.name + "_" + nf.size]) collected.items.add(nf);
-          }
-          fileInput.files = collected.files;
-          updateLabel();
-        });
-
-        var form = document.getElementById("inquiry");
-        if (form) form.addEventListener("reset", function () {
-          collected = new DataTransfer();
-          fileInput.files = collected.files;
-          updateLabel();
-        });
-      }
     })();
   </script>
 

@@ -141,7 +141,7 @@ phone. It checks:
 - Every `getElementById("...")` in `main.js` and inline scripts matches
   an actual `id` on the page that loads the script
 - Commission form's Web3Forms attributes are intact (missing `action`,
-  hidden `access_key`, `enctype`, etc. silently break submissions)
+  hidden `access_key`, honeypot, etc. silently break submissions)
 - `index.html` loads imagesLoaded + Isotope before `main.js`
 - Classes added/toggled by JS (e.g., `is-laid-out`) have a matching CSS
   rule in `styles.css` (warning only — false positives are possible)
@@ -241,9 +241,10 @@ public `access_key` is in the HTML; submissions get emailed directly to
 the address tied to that key (Sharyn's). No dashboard/notification config
 needed.
 
-Supports image attachments via `<input type="file" name="images" multiple>`
-(Web3Forms caps total upload at 10MB) — `mailto:` can't carry attachments,
-which is why we use a form service.
+**No file attachments.** Web3Forms paywalls file uploads (Pro feature),
+and the free alternatives all paywall it too. The form asks inquirers
+to paste reference image links in the message field instead; if Sharyn
+needs photos, she asks in her email reply.
 
 Spam protection: a hidden `botcheck` honeypot field. If something fills
 it in, Web3Forms drops the submission silently.
