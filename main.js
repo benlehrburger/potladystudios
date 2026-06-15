@@ -39,6 +39,8 @@
 
   var grid = document.getElementById("gallery-grid");
   function catsOf(p) { return [p.cat].concat(p.extraCats || []); }
+  // Grid shows a lightweight thumbnail; the lightbox loads the full-res file.
+  function thumbOf(src) { return src.replace(/\/([^/]+)$/, "/thumbs/$1"); }
 
   PIECES.forEach(function (p) {
     var el = document.createElement("figure");
@@ -47,7 +49,7 @@
     el.setAttribute("data-id", p.id);
     el.innerHTML =
       '<div class="piece-media">' +
-        '<img src="' + p.src + '" alt="' + (p.caption || (CAT_LABELS[p.cat] + ' ' + p.id)) + '" loading="lazy">' +
+        '<img src="' + thumbOf(p.src) + '" alt="' + (p.caption || (CAT_LABELS[p.cat] + ' ' + p.id)) + '" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\'' + p.src + '\'">' +
         '<figcaption>' +
           '<span class="piece-no">' + String(p.id).padStart(2, "0") + '</span>' +
         '</figcaption>' +
