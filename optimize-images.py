@@ -36,8 +36,8 @@ except ImportError:
 CATEGORIES = ["garden", "home", "totems"]
 FULL_MAX_EDGE = 1600   # plenty for the lightbox, even on a retina phone
 FULL_QUALITY = 90      # visually lossless
-THUMB_MAX_EDGE = 900   # crisp in the grid at any screen density
-THUMB_QUALITY = 80
+THUMB_MAX_EDGE = 640   # crisp in the grid at any screen density (grid is 2-3 cols)
+THUMB_QUALITY = 74
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
