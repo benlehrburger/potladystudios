@@ -23,16 +23,17 @@
     { id: 19, cat: "home",   src: "images/home/IMG_tile_mosaic.jpeg" },
     { id: 20, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_face_masks_tree.jpg", caption: "Ceramic face masks on a tree" },
     { id: 21, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_face_masks_tree_2.jpg" },
-    { id: 22, cat: "garden", extraCats: ["totems"], src: "images/totems/IMG_totem_planter_column.jpg" },
-    { id: 23, cat: "home",   src: "images/home/IMG_6821.jpeg" },
-    { id: 24, cat: "home",   src: "images/home/IMG_6817.jpeg" },
-    { id: 25, cat: "home",   src: "images/home/IMG_0221.jpg" },
-    { id: 26, cat: "totems", src: "images/totems/IMG_silver_totem_tall.jpg" },
-    { id: 27, cat: "totems", src: "images/totems/IMG_silver_totem_short.jpg" },
-    { id: 28, cat: "home",   src: "images/home/IMG_candlestick_pair_speckled.jpg", caption: "Pair of sculpted candlesticks" },
-    { id: 29, cat: "totems", src: "images/totems/IMG_5466.jpg" },
-    { id: 30, cat: "totems", src: "images/totems/IMG_5467.jpg" },
-    { id: 31, cat: "home",   src: "images/home/IMG_candleholders_pair_portrait.jpeg" }
+    { id: 22, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_face_masks_tree_3.jpg" },
+    { id: 23, cat: "garden", extraCats: ["totems"], src: "images/totems/IMG_totem_planter_column.jpg" },
+    { id: 24, cat: "home",   src: "images/home/IMG_6821.jpeg" },
+    { id: 25, cat: "home",   src: "images/home/IMG_6817.jpeg" },
+    { id: 26, cat: "home",   src: "images/home/IMG_0221.jpg" },
+    { id: 27, cat: "totems", src: "images/totems/IMG_silver_totem_tall.jpg" },
+    { id: 28, cat: "totems", src: "images/totems/IMG_silver_totem_short.jpg" },
+    { id: 29, cat: "home",   src: "images/home/IMG_candlestick_pair_speckled.jpg", caption: "Pair of sculpted candlesticks" },
+    { id: 30, cat: "totems", src: "images/totems/IMG_5466.jpg" },
+    { id: 31, cat: "totems", src: "images/totems/IMG_5467.jpg" },
+    { id: 32, cat: "home",   src: "images/home/IMG_candleholders_pair_portrait.jpeg" }
   ];
 
   var CAT_LABELS = { garden: "Garden Pieces", home: "Home Decor", totems: "Totems" };
