@@ -39,6 +39,48 @@
     { id: 35, cat: "garden", src: "images/garden/IMG_nala_rabbit_closeup.jpg" }
   ];
 
+  // Intrinsic thumbnail dimensions, so each grid cell reserves its space
+  // before the image loads. This lets the gallery lay out and appear
+  // immediately and lets off-screen thumbnails load lazily on scroll,
+  // instead of blocking the whole grid on every image downloading.
+  var DIMS = {
+    "images/home/IMG_4905.jpg": [456, 640],
+    "images/home/IMG_braided_bowl.jpg": [640, 480],
+    "images/home/IMG_4873.jpg": [640, 335],
+    "images/garden/IMG_0199.jpg": [555, 640],
+    "images/garden/IMG_0212.jpg": [588, 640],
+    "images/garden/IMG_0065.jpg": [640, 567],
+    "images/garden/IMG_0216.jpg": [555, 640],
+    "images/garden/IMG_flower_garden_collection.jpg": [640, 480],
+    "images/garden/IMG_flower_coral_vessel.jpg": [555, 640],
+    "images/garden/IMG_flower_pod_opening.jpg": [611, 640],
+    "images/garden/IMG_flower_brown_bud.jpg": [526, 640],
+    "images/garden/IMG_flower_green_star.jpg": [480, 640],
+    "images/garden/IMG_flower_pumpkin_orange.jpg": [480, 640],
+    "images/garden/IMG_flower_coral_top.jpg": [542, 640],
+    "images/garden/IMG_flower_cream_bulb.jpg": [508, 640],
+    "images/garden/IMG_flower_beaded_sphere.jpg": [505, 640],
+    "images/garden/IMG_flower_cone_tower.jpg": [480, 640],
+    "images/home/IMG_0275.jpg": [540, 640],
+    "images/home/IMG_tile_mosaic.jpeg": [480, 640],
+    "images/garden/IMG_face_masks_tree.jpg": [480, 640],
+    "images/garden/IMG_face_masks_tree_2.jpg": [480, 640],
+    "images/garden/IMG_face_masks_tree_3.jpg": [352, 640],
+    "images/totems/IMG_totem_planter_column.jpg": [480, 640],
+    "images/home/IMG_6821.jpeg": [640, 618],
+    "images/home/IMG_6817.jpeg": [640, 480],
+    "images/home/IMG_0221.jpg": [640, 581],
+    "images/totems/IMG_silver_totem_tall.jpg": [231, 640],
+    "images/totems/IMG_silver_totem_short.jpg": [498, 640],
+    "images/home/IMG_candlestick_pair_speckled.jpg": [427, 640],
+    "images/totems/IMG_5466.jpg": [390, 640],
+    "images/totems/IMG_5467.jpg": [462, 640],
+    "images/home/IMG_candleholders_pair_portrait.jpeg": [480, 640],
+    "images/garden/IMG_face_masks_tree_4.jpg": [352, 640],
+    "images/garden/IMG_ode_to_nala.jpg": [480, 640],
+    "images/garden/IMG_nala_rabbit_closeup.jpg": [560, 640]
+  };
+
   var CAT_LABELS = { garden: "Garden Pieces", home: "Home Decor", totems: "Totems" };
 
   var grid = document.getElementById("gallery-grid");
@@ -46,14 +88,19 @@
   // Grid shows a lightweight thumbnail; the lightbox loads the full-res file.
   function thumbOf(src) { return src.replace(/\/([^/]+)$/, "/thumbs/$1"); }
 
-  PIECES.forEach(function (p) {
+  PIECES.forEach(function (p, i) {
     var el = document.createElement("figure");
     el.className = "piece " + catsOf(p).map(function (c) { return "cat-" + c; }).join(" ");
     el.setAttribute("data-cat", p.cat);
     el.setAttribute("data-id", p.id);
+    var d = DIMS[p.src];
+    var dimAttr = d ? ' width="' + d[0] + '" height="' + d[1] + '"' : "";
+    // The first row or two are above the fold — load those eagerly so they
+    // paint right away; everything below the fold loads on scroll.
+    var loadAttr = i < 6 ? "eager" : "lazy";
     el.innerHTML =
       '<div class="piece-media">' +
-        '<img src="' + thumbOf(p.src) + '" alt="' + (p.caption || (CAT_LABELS[p.cat] + ' ' + p.id)) + '" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\'' + p.src + '\'">' +
+        '<img src="' + thumbOf(p.src) + '"' + dimAttr + ' alt="' + (p.caption || (CAT_LABELS[p.cat] + ' ' + p.id)) + '" loading="' + loadAttr + '" decoding="async" onerror="this.onerror=null;this.src=\'' + p.src + '\'">' +
         '<figcaption>' +
           '<span class="piece-no">' + String(p.id).padStart(2, "0") + '</span>' +
         '</figcaption>' +
@@ -63,20 +110,22 @@
     grid.appendChild(el);
   });
 
-  var iso;
-  imagesLoaded(grid, function () {
-    iso = new Isotope(grid, {
-      itemSelector: ".piece",
-      layoutMode: "masonry",
-      percentPosition: true,
-      masonry: {
-        columnWidth: ".grid-sizer",
-        gutter: ".gutter-sizer"
-      },
-      transitionDuration: "0.3s"
-    });
-    grid.classList.add("is-laid-out");
+  // Because every cell reserves its space (width/height on each img), Isotope
+  // can lay the grid out and reveal it straight away — no waiting for all the
+  // thumbnails to download. As lazy thumbnails arrive while scrolling, we
+  // re-run the layout to absorb any rounding differences.
+  var iso = new Isotope(grid, {
+    itemSelector: ".piece",
+    layoutMode: "masonry",
+    percentPosition: true,
+    masonry: {
+      columnWidth: ".grid-sizer",
+      gutter: ".gutter-sizer"
+    },
+    transitionDuration: "0.3s"
   });
+  grid.classList.add("is-laid-out");
+  imagesLoaded(grid).on("progress", function () { iso.layout(); });
 
   var filterBtns = document.querySelectorAll(".filter");
   filterBtns.forEach(function (btn) {
