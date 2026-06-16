@@ -95,12 +95,12 @@
     el.setAttribute("data-id", p.id);
     var d = DIMS[p.src];
     var dimAttr = d ? ' width="' + d[0] + '" height="' + d[1] + '"' : "";
-    // The first row or two are above the fold — load those eagerly so they
-    // paint right away; everything below the fold loads on scroll.
-    var loadAttr = i < 6 ? "eager" : "lazy";
+    // The whole gallery sits below the top photo, so every thumbnail loads
+    // lazily (on scroll). That keeps the connection clear for the top photo
+    // to load first, instead of competing with it on page load.
     el.innerHTML =
       '<div class="piece-media">' +
-        '<img src="' + thumbOf(p.src) + '"' + dimAttr + ' alt="' + (p.caption || (CAT_LABELS[p.cat] + ' ' + p.id)) + '" loading="' + loadAttr + '" decoding="async" onerror="this.onerror=null;this.src=\'' + p.src + '\'">' +
+        '<img src="' + thumbOf(p.src) + '"' + dimAttr + ' alt="' + (p.caption || (CAT_LABELS[p.cat] + ' ' + p.id)) + '" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\'' + p.src + '\'">' +
         '<figcaption>' +
           '<span class="piece-no">' + String(p.id).padStart(2, "0") + '</span>' +
         '</figcaption>' +
