@@ -60,6 +60,9 @@ input, select, textarea { font: inherit; }
   width: 100%; height: 100%;
   object-fit: cover;
 }
+/* Anchor the home-page top photo to its top edge so the top isn't cropped
+   (the frame fills edge-to-edge, so any trim comes off the bottom). */
+.hero-image img { object-position: center top; }
 
 /* ---------- Nav ---------- */
 .nav {
