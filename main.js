@@ -5,11 +5,11 @@
     { id: 1,  cat: "home",   src: "images/home/IMG_4905.jpg", caption: "Coil built orchid bowl planter" },
     { id: 2,  cat: "home",   src: "images/home/IMG_braided_bowl.jpg" },
     { id: 3,  cat: "home",   src: "images/home/IMG_4873.jpg" },
-    { id: 4,  cat: "garden", src: "images/garden/IMG_0199.jpg" },
-    { id: 5,  cat: "garden", src: "images/garden/IMG_0212.jpg" },
-    { id: 6,  cat: "garden", src: "images/garden/IMG_0065.jpg" },
-    { id: 7,  cat: "garden", src: "images/garden/IMG_0216.jpg" },
-    { id: 8,  cat: "garden", src: "images/garden/IMG_flower_garden_collection.jpg" },
+    { id: 4,  cat: "garden", src: "images/garden/IMG_flower_garden_collection.jpg" },
+    { id: 5,  cat: "garden", src: "images/garden/IMG_0199.jpg" },
+    { id: 6,  cat: "garden", src: "images/garden/IMG_0212.jpg" },
+    { id: 7,  cat: "garden", src: "images/garden/IMG_0065.jpg" },
+    { id: 8,  cat: "garden", src: "images/garden/IMG_0216.jpg" },
     { id: 9,  cat: "garden", src: "images/garden/IMG_flower_coral_vessel.jpg" },
     { id: 10, cat: "garden", src: "images/garden/IMG_flower_pod_opening.jpg" },
     { id: 11, cat: "garden", src: "images/garden/IMG_flower_brown_bud.jpg" },
@@ -34,9 +34,8 @@
     { id: 30, cat: "totems", src: "images/totems/IMG_5466.jpg" },
     { id: 31, cat: "totems", src: "images/totems/IMG_5467.jpg" },
     { id: 32, cat: "home",   src: "images/home/IMG_candleholders_pair_portrait.jpeg" },
-    { id: 33, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_face_masks_tree_4.jpg", caption: "Ceramic face masks on a tree" },
-    { id: 34, cat: "garden", src: "images/garden/IMG_ode_to_nala.jpg", caption: "Ode To Nala" },
-    { id: 35, cat: "garden", src: "images/garden/IMG_nala_rabbit_closeup.jpg" }
+    { id: 33, cat: "garden", src: "images/garden/IMG_ode_to_nala.jpg", caption: "Ode To Nala" },
+    { id: 34, cat: "garden", src: "images/garden/IMG_nala_rabbit_closeup.jpg" }
   ];
 
   // Intrinsic thumbnail dimensions, so each grid cell reserves its space
@@ -76,7 +75,6 @@
     "images/totems/IMG_5466.jpg": [390, 640],
     "images/totems/IMG_5467.jpg": [462, 640],
     "images/home/IMG_candleholders_pair_portrait.jpeg": [480, 640],
-    "images/garden/IMG_face_masks_tree_4.jpg": [352, 640],
     "images/garden/IMG_ode_to_nala.jpg": [480, 640],
     "images/garden/IMG_nala_rabbit_closeup.jpg": [560, 640]
   };
