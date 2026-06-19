@@ -31,7 +31,7 @@
     { id: 27, cat: "totems", src: "images/totems/IMG_silver_totem_tall.jpg" },
     { id: 28, cat: "totems", src: "images/totems/IMG_silver_totem_short.jpg" },
     { id: 29, cat: "home",   src: "images/home/IMG_candlestick_pair_speckled.jpg", caption: "Pair of sculpted candlesticks" },
-    { id: 30, cat: "totems", src: "images/totems/IMG_5466.jpg" },
+    { id: 30, cat: "totems", src: "images/totems/IMG_5466.jpg", caption: "Intricate Coil Built Totem Planter" },
     { id: 31, cat: "totems", src: "images/totems/IMG_5467.jpg" },
     { id: 32, cat: "home",   src: "images/home/IMG_candleholders_pair_portrait.jpeg" },
     { id: 33, cat: "garden", src: "images/garden/IMG_ode_to_nala.jpg", caption: "Ode To Nala" },
