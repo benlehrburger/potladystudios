@@ -29,13 +29,12 @@
     { id: 25, cat: "home",   src: "images/home/IMG_6817.jpeg" },
     { id: 26, cat: "home",   src: "images/home/IMG_0221.jpg", caption: "Ceramic and Driftwood Bird" },
     { id: 27, cat: "totems", src: "images/totems/IMG_silver_totem_tall.jpg" },
-    { id: 28, cat: "totems", src: "images/totems/IMG_silver_totem_short.jpg" },
+    { id: 28, cat: "totems", src: "images/totems/IMG_silver_totem_short.jpg", caption: "MCM Tall Sculpture on Acrylic Base" },
     { id: 29, cat: "home",   src: "images/home/IMG_candlestick_pair_speckled.jpg", caption: "Pair of sculpted candlesticks" },
     { id: 30, cat: "totems", src: "images/totems/IMG_5466.jpg", caption: "Intricate Coil Built Totem Planter" },
     { id: 31, cat: "totems", src: "images/totems/IMG_5467.jpg" },
-    { id: 32, cat: "home",   src: "images/home/IMG_candleholders_pair_portrait.jpeg" },
-    { id: 33, cat: "garden", src: "images/garden/IMG_ode_to_nala.jpg", caption: "Ode To Nala" },
-    { id: 34, cat: "garden", src: "images/garden/IMG_nala_rabbit_closeup.jpg" }
+    { id: 32, cat: "garden", src: "images/garden/IMG_ode_to_nala.jpg", caption: "Ode To Nala" },
+    { id: 33, cat: "garden", src: "images/garden/IMG_nala_rabbit_closeup.jpg" }
   ];
 
   // Intrinsic thumbnail dimensions, so each grid cell reserves its space
@@ -74,7 +73,6 @@
     "images/home/IMG_candlestick_pair_speckled.jpg": [427, 640],
     "images/totems/IMG_5466.jpg": [390, 640],
     "images/totems/IMG_5467.jpg": [462, 640],
-    "images/home/IMG_candleholders_pair_portrait.jpeg": [480, 640],
     "images/garden/IMG_ode_to_nala.jpg": [480, 640],
     "images/garden/IMG_nala_rabbit_closeup.jpg": [560, 640]
   };
