@@ -34,8 +34,8 @@
     { id: 30, cat: "totems", src: "images/totems/IMG_5466.jpg", caption: "Intricate Coil Built Totem Planter" },
     { id: 31, cat: "totems", src: "images/totems/IMG_5467.jpg" },
     { id: 32, cat: "garden", src: "images/garden/IMG_ode_to_nala.jpg", caption: "Ode To Nala" },
-    { id: 33, cat: "garden", src: "images/garden/IMG_nala_rabbit_closeup.jpg" },
-    { id: 34, cat: "garden", src: "images/garden/IMG_nala_totem_full.jpg" }
+    { id: 33, cat: "garden", src: "images/garden/IMG_nala_totem_full.jpg" },
+    { id: 34, cat: "garden", src: "images/garden/IMG_nala_rabbit_closeup.jpg" }
   ];
 
   // Intrinsic thumbnail dimensions, so each grid cell reserves its space
