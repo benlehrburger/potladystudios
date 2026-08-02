@@ -36,7 +36,10 @@
     { id: 32, cat: "totems", src: "images/totems/IMG_5467.jpg" },
     { id: 33, cat: "garden", src: "images/garden/IMG_ode_to_nala.jpg", caption: "Ode To Nala" },
     { id: 34, cat: "garden", src: "images/garden/IMG_nala_totem_full.jpg" },
-    { id: 35, cat: "garden", src: "images/garden/IMG_nala_rabbit_closeup.jpg" }
+    { id: 35, cat: "garden", src: "images/garden/IMG_nala_rabbit_closeup.jpg" },
+    { id: 36, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_wall_pockets_trio.jpg" },
+    { id: 37, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_wall_pockets_tree.jpg" },
+    { id: 38, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_wall_pockets_tree_wide.jpg" }
   ];
 
   // Intrinsic thumbnail dimensions, so each grid cell reserves its space
@@ -78,7 +81,10 @@
     "images/totems/IMG_5467.jpg": [462, 640],
     "images/garden/IMG_ode_to_nala.jpg": [480, 640],
     "images/garden/IMG_nala_rabbit_closeup.jpg": [560, 640],
-    "images/garden/IMG_nala_totem_full.jpg": [328, 640]
+    "images/garden/IMG_nala_totem_full.jpg": [328, 640],
+    "images/garden/IMG_wall_pockets_trio.jpg": [640, 480],
+    "images/garden/IMG_wall_pockets_tree.jpg": [480, 640],
+    "images/garden/IMG_wall_pockets_tree_wide.jpg": [480, 640]
   };
 
   var CAT_LABELS = { garden: "Garden Pieces", home: "Home Decor", totems: "Totems" };
