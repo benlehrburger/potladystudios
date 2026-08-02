@@ -31,11 +31,12 @@
     { id: 27, cat: "totems", src: "images/totems/IMG_silver_totem_tall.jpg" },
     { id: 28, cat: "totems", src: "images/totems/IMG_silver_totem_short.jpg", caption: "MCM Tall Sculpture on Acrylic Base" },
     { id: 29, cat: "home",   src: "images/home/IMG_candlestick_pair_speckled.jpg", caption: "Pair of sculpted candlesticks" },
-    { id: 30, cat: "totems", src: "images/totems/IMG_5466.jpg", caption: "Intricate Coil Built Totem Planter" },
-    { id: 31, cat: "totems", src: "images/totems/IMG_5467.jpg" },
-    { id: 32, cat: "garden", src: "images/garden/IMG_ode_to_nala.jpg", caption: "Ode To Nala" },
-    { id: 33, cat: "garden", src: "images/garden/IMG_nala_totem_full.jpg" },
-    { id: 34, cat: "garden", src: "images/garden/IMG_nala_rabbit_closeup.jpg" }
+    { id: 30, cat: "home",   src: "images/home/IMG_candlesticks_white_pair.jpg" },
+    { id: 31, cat: "totems", src: "images/totems/IMG_5466.jpg", caption: "Intricate Coil Built Totem Planter" },
+    { id: 32, cat: "totems", src: "images/totems/IMG_5467.jpg" },
+    { id: 33, cat: "garden", src: "images/garden/IMG_ode_to_nala.jpg", caption: "Ode To Nala" },
+    { id: 34, cat: "garden", src: "images/garden/IMG_nala_totem_full.jpg" },
+    { id: 35, cat: "garden", src: "images/garden/IMG_nala_rabbit_closeup.jpg" }
   ];
 
   // Intrinsic thumbnail dimensions, so each grid cell reserves its space
@@ -72,6 +73,7 @@
     "images/totems/IMG_silver_totem_tall.jpg": [231, 640],
     "images/totems/IMG_silver_totem_short.jpg": [498, 640],
     "images/home/IMG_candlestick_pair_speckled.jpg": [427, 640],
+    "images/home/IMG_candlesticks_white_pair.jpg": [427, 640],
     "images/totems/IMG_5466.jpg": [390, 640],
     "images/totems/IMG_5467.jpg": [462, 640],
     "images/garden/IMG_ode_to_nala.jpg": [480, 640],
