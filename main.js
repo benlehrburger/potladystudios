@@ -93,6 +93,8 @@
   function catsOf(p) { return [p.cat].concat(p.extraCats || []); }
   // Grid shows a lightweight thumbnail; the lightbox loads the full-res file.
   function thumbOf(src) { return src.replace(/\/([^/]+)$/, "/thumbs/$1"); }
+  // A piece's display name: its title if set, otherwise its short caption.
+  function titleOf(p) { return p.title || p.caption || ""; }
 
   PIECES.forEach(function (p, i) {
     var el = document.createElement("figure");
@@ -106,12 +108,12 @@
     // to load first, instead of competing with it on page load.
     el.innerHTML =
       '<div class="piece-media">' +
-        '<img src="' + thumbOf(p.src) + '"' + dimAttr + ' alt="' + (p.caption || (CAT_LABELS[p.cat] + ' ' + p.id)) + '" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\'' + p.src + '\'">' +
+        '<img src="' + thumbOf(p.src) + '"' + dimAttr + ' alt="' + (titleOf(p) || (CAT_LABELS[p.cat] + ' ' + p.id)) + '" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\'' + p.src + '\'">' +
         '<figcaption>' +
           '<span class="piece-no">' + String(p.id).padStart(2, "0") + '</span>' +
         '</figcaption>' +
       '</div>' +
-      (p.caption ? '<div class="piece-caption">' + p.caption + '</div>' : '');
+      (titleOf(p) ? '<div class="piece-caption">' + titleOf(p) + '</div>' : '');
     el.addEventListener("click", function () { openLightbox(p.id); });
     grid.appendChild(el);
   });
@@ -149,8 +151,12 @@
 
   var lb = document.getElementById("lightbox");
   var lbImg = document.getElementById("lb-img");
+  var lbCat = document.getElementById("lb-cat");
   var lbTitle = document.getElementById("lb-title");
-  var lbCaption = document.getElementById("lb-caption");
+  var lbNote = document.getElementById("lb-note");
+  var lbNoteField = document.getElementById("lb-note-field");
+  var lbSize = document.getElementById("lb-size");
+  var lbSizeField = document.getElementById("lb-size-field");
   var lbIdx = document.getElementById("lb-idx");
   var lbTotal = document.getElementById("lb-total");
   var lbInquire = document.getElementById("lb-inquire");
@@ -176,12 +182,24 @@
     current = (current + d + visible.length) % visible.length;
     renderLb();
   }
+  // Show a detail field only when the piece has that information filled in,
+  // so the drill-down never shows an empty "Size" or "Artist's Note" label.
+  function setField(fieldEl, textEl, value) {
+    if (value) { textEl.textContent = value; fieldEl.style.display = ""; }
+    else { textEl.textContent = ""; fieldEl.style.display = "none"; }
+  }
   function renderLb() {
     var p = visible[current];
     lbImg.src = p.src;
-    lbImg.alt = CAT_LABELS[p.cat] + " " + p.id;
-    lbTitle.textContent = CAT_LABELS[p.cat];
-    lbCaption.textContent = p.caption || "";
+    lbImg.alt = titleOf(p) || (CAT_LABELS[p.cat] + " " + p.id);
+    var t = titleOf(p);
+    // With a real title, show the category as a small eyebrow above it; without
+    // one, use the category as the heading itself and drop the redundant eyebrow.
+    lbCat.textContent = CAT_LABELS[p.cat];
+    lbCat.style.display = t ? "" : "none";
+    lbTitle.textContent = t || CAT_LABELS[p.cat];
+    setField(lbNoteField, lbNote, p.note);
+    setField(lbSizeField, lbSize, p.size);
     lbIdx.textContent = String(current + 1).padStart(2, "0");
     lbTotal.textContent = String(visible.length).padStart(2, "0");
   }

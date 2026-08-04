@@ -434,7 +434,11 @@ input, select, textarea { font: inherit; }
 .lb-info { align-self: center; }
 .lb-counter {
   font-size: 0.72rem; letter-spacing: 0.16em; color: var(--umber);
-  margin-bottom: 1.75rem; font-weight: 500;
+  margin-bottom: 1rem; font-weight: 500;
+}
+.lb-eyebrow {
+  font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--oxide); font-weight: 600; margin-bottom: 0.6rem;
 }
 .lb-info h3 {
   font-family: var(--serif); font-weight: 300;
@@ -442,12 +446,14 @@ input, select, textarea { font: inherit; }
   line-height: 1.15;
   margin-bottom: 1.75rem;
 }
-.lb-caption {
-  color: var(--umber); font-size: 0.95rem; max-width: 30em;
-  margin-bottom: 1.5rem;
+.lb-field { max-width: 32em; margin-bottom: 1.4rem; }
+.lb-field-label {
+  display: block;
+  font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--umber-2); font-weight: 600; margin-bottom: 0.4rem;
 }
-.lb-caption:empty { display: none; }
-.lb-inquire-line { font-size: 0.92rem; }
+.lb-field-text { color: var(--umber); font-size: 0.95rem; line-height: 1.6; }
+.lb-inquire-line { font-size: 0.92rem; margin-top: 0.5rem; }
 .lb-inquire-line a { border-bottom: 1px solid var(--oxide); transition: color 0.2s ease; }
 .lb-inquire-line a:hover { color: var(--oxide); }
 .lb-nav { display: contents; }
