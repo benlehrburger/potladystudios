@@ -20,7 +20,7 @@
     { id: 16, cat: "garden", src: "images/garden/IMG_flower_beaded_sphere.jpg" },
     { id: 17, cat: "garden", src: "images/garden/IMG_flower_cone_tower.jpg" },
     { id: 18, cat: "home",   src: "images/home/IMG_framed_ceramic_tiles.jpg", title: "Ceramic Tile Wall Art", note: "I really enjoyed experimenting with various shapes and sizes with these individual tiles I hand built and mounted. They look equally great hanging indoors or on a covered outdoor space. I also think they work in modern, MCM, or more vintage spaces (like mine!)." },
-    { id: 19, cat: "home",   src: "images/home/IMG_tile_mosaic.jpeg" },
+    { id: 19, cat: "home",   src: "images/home/IMG_tile_mosaic.jpeg", note: "This was a commission for an MCM tile wall art piece for a terrace in San Francisco overlooking Mission Bay. I shipped the tiles (and instructions) to the owner who assembled them onsite." },
     { id: 20, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_face_masks_tree.jpg", caption: "Ceramic face masks on a tree" },
     { id: 21, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_face_masks_tree_2.jpg" },
     { id: 22, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_face_masks_tree_3.jpg" },
