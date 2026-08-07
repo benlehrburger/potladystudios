@@ -5,7 +5,7 @@
     { id: 1,  cat: "home",   src: "images/home/IMG_4905.jpg", title: "Coil Built Bowl/Planter", note: "I originally made this to be a salad or pasta serving bowl but I think it makes a lovely orchid bowl too!" },
     { id: 2,  cat: "home",   src: "images/home/IMG_braided_bowl.jpg" },
     { id: 3,  cat: "home",   src: "images/home/IMG_4873.jpg" },
-    { id: 4,  cat: "garden", src: "images/garden/IMG_flower_garden_collection.jpg", caption: "Ceramic Flower Assembly in the Garden" },
+    { id: 4,  cat: "garden", src: "images/garden/IMG_flower_garden_collection.jpg", title: "Flower Assembly in the Garden", note: "Really enjoyed making these using various forms and patterns that I made. I think they look great as a grouping, but I also like them placed individually in pots — especially in the winter when flowers are spent; they give color and “life” to my otherwise dreary looking pots." },
     { id: 5,  cat: "garden", src: "images/garden/IMG_0199.jpg" },
     { id: 6,  cat: "garden", src: "images/garden/IMG_0212.jpg" },
     { id: 7,  cat: "garden", src: "images/garden/IMG_0065.jpg" },
