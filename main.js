@@ -2,7 +2,7 @@
   "use strict";
 
   var PIECES = [
-    { id: 1,  cat: "home",   src: "images/home/IMG_4905.jpg", caption: "Coil built orchid bowl planter" },
+    { id: 1,  cat: "home",   src: "images/home/IMG_4905.jpg", title: "Coil Built Bowl/Planter", note: "I originally made this to be a salad or pasta serving bowl but I think it makes a lovely orchid bowl too!" },
     { id: 2,  cat: "home",   src: "images/home/IMG_braided_bowl.jpg" },
     { id: 3,  cat: "home",   src: "images/home/IMG_4873.jpg" },
     { id: 4,  cat: "garden", src: "images/garden/IMG_flower_garden_collection.jpg", caption: "Ceramic Flower Assembly in the Garden" },
