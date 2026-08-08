@@ -34,7 +34,7 @@
     { id: 30, cat: "home",   src: "images/home/IMG_candlesticks_white_pair.jpg" },
     { id: 31, cat: "totems", src: "images/totems/IMG_5467.jpg", caption: "Intricate Coil Built Totem Planter" },
     { id: 32, cat: "totems", src: "images/totems/IMG_5466.jpg" },
-    { id: 33, cat: "garden", extraCats: ["totems"], src: "images/totems/IMG_ode_to_nala_rabbit.jpg", caption: "Ode to Nala" },
+    { id: 33, cat: "garden", extraCats: ["totems"], src: "images/totems/IMG_ode_to_nala_rabbit.jpg", caption: "Ode to Nala", note: "This totem was custom made for a much loved bunny (Nala). It’s a nod to some of her favorite things and her regal demeanor. I love planning and making these personal and meaningful." },
     { id: 34, cat: "garden", extraCats: ["totems"], src: "images/totems/IMG_ode_to_nala_full.jpg" },
     { id: 35, cat: "garden", extraCats: ["totems"], src: "images/totems/IMG_ode_to_nala_house.jpg" },
     { id: 36, cat: "garden", src: "images/garden/IMG_dragonfly_succulent_pot.jpg" },
