@@ -24,7 +24,7 @@
     { id: 20, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_face_masks_tree.jpg", caption: "Ceramic face masks on a tree", note: "For these Picasso inspired masks I experimented with underglaze in different saturations. They give color and interest to my front garden which is shady and attracts flower-eating deer. Of course these would look great indoors as well." },
     { id: 21, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_face_masks_tree_2.jpg" },
     { id: 22, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_face_masks_tree_3.jpg" },
-    { id: 23, cat: "garden", extraCats: ["totems"], src: "images/totems/IMG_totem_planter_column.jpg", caption: "Red Clay Planter Totem" },
+    { id: 23, cat: "garden", extraCats: ["totems"], src: "images/totems/IMG_totem_planter_column.jpg", caption: "Red Clay Planter Totem", note: "I built this using a red clay and chose to keep the natural color and not to glaze it. I added the design using white underglaze and stencils. I keep this outside all winter and enjoy planting it with annuals in the spring." },
     { id: 24, cat: "home",   src: "images/home/IMG_6821.jpeg", caption: "Colorful Hug Mugs" },
     { id: 25, cat: "home",   src: "images/home/IMG_6817.jpeg" },
     { id: 26, cat: "home",   src: "images/home/IMG_0221.jpg", caption: "Ceramic and Driftwood Bird" },
