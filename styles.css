@@ -223,6 +223,33 @@ input, select, textarea { font: inherit; }
   padding: 0.65rem 0.5rem 0;
 }
 
+/* Multi-photo pieces: a couple of stacked edges + a "+N" mark hint at the
+   supporting shots before you tap, so the grid isn't a guessing game about
+   which tiles hide more photos. Always visible (not hover-only) since touch
+   devices have no hover state to reveal it on. */
+.piece.has-extra .piece-media { overflow: visible; }
+.piece-stack {
+  position: absolute; inset: 0;
+  background: rgba(110, 104, 92, 0.12);
+  border: 1px solid rgba(27, 35, 32, 0.08);
+}
+.piece-stack.s1 { z-index: 1; transform: rotate(-5deg) scale(0.96); }
+.piece-stack.s2 { z-index: 2; transform: rotate(4deg) scale(0.98); }
+.piece.has-extra .piece-media > img { position: relative; z-index: 3; box-shadow: 0 3px 10px rgba(27, 35, 32, 0.2); }
+.piece.has-extra .piece-media::after { z-index: 4; }
+.piece-count {
+  position: absolute; top: 0.6rem; right: 0.6rem; z-index: 5;
+  background: rgba(27, 35, 32, 0.7);
+  color: var(--bone);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.22rem 0.5rem;
+  border-radius: 999px;
+  pointer-events: none;
+}
+.piece figcaption { z-index: 6; }
+
 /* ---------- About ---------- */
 .about {
   max-width: var(--max);
@@ -422,8 +449,10 @@ input, select, textarea { font: inherit; }
 .lb-image {
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
 }
 #lb-img {
   max-height: min(78vh, 760px);
@@ -431,6 +460,21 @@ input, select, textarea { font: inherit; }
   width: auto; height: auto;
   object-fit: contain;
 }
+.lb-image.has-thumbs #lb-img { max-height: min(66vh, 660px); }
+.lb-thumbs { display: flex; gap: 0.6rem; }
+.lb-thumbs button {
+  width: 3.25rem; height: 3.25rem;
+  flex: none;
+  border-radius: 0.3rem;
+  overflow: hidden;
+  opacity: 0.55;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition: opacity 0.2s ease, outline-color 0.2s ease;
+}
+.lb-thumbs button img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.lb-thumbs button:hover { opacity: 0.85; }
+.lb-thumbs button.is-active { opacity: 1; outline-color: var(--oxide); }
 .lb-info { align-self: center; }
 .lb-counter {
   font-size: 0.72rem; letter-spacing: 0.16em; color: var(--umber);
@@ -513,7 +557,7 @@ input, select, textarea { font: inherit; }
   .gallery-grid .piece { margin-bottom: 1rem; }
   .lightbox { display: flex; flex-direction: column; overflow-y: auto; }
   .lb-content { grid-template-columns: 1fr; height: auto; overflow: visible; align-items: start; gap: 2rem; padding-top: 5rem; padding-bottom: 0; order: 1; flex: 0 0 auto; }
-  #lb-img { max-height: 48vh; }
+  #lb-img, .lb-image.has-thumbs #lb-img { max-height: 48vh; }
   .lb-nav {
     display: flex; order: 2; flex: 0 0 auto;
     align-items: center; justify-content: space-between;

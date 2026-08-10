@@ -43,14 +43,21 @@ try {
   fail("Failed to parse PIECES: " + e.message);
 }
 
+// A piece's photos, lead first — `extra` holds a grouped piece's supporting
+// shots, so anything checking "does this image exist / have a thumbnail"
+// needs to walk both, not just `src`.
+const allSrcs = (p) => [p.src].concat(p.extra || []);
+
 // ---- 3. Every PIECES image exists on disk ----
 if (PIECES) {
   let missing = 0;
   PIECES.forEach((p) => {
-    if (!p.src || !exists(p.src)) {
-      fail(`Missing gallery image: ${p.src} (piece id ${p.id})`);
-      missing++;
-    }
+    allSrcs(p).forEach((src) => {
+      if (!src || !exists(src)) {
+        fail(`Missing gallery image: ${src} (piece id ${p.id})`);
+        missing++;
+      }
+    });
   });
   if (!missing) ok("All gallery image files exist");
 }
@@ -303,22 +310,24 @@ function thumbOf(src) { return src.replace(/\/([^/]+)$/, "/thumbs/$1"); }
 if (PIECES) {
   let imgIssues = 0;
   PIECES.forEach((p) => {
-    if (!p.src || !exists(p.src)) return; // already reported in check 3
-    const thumb = thumbOf(p.src);
-    if (!exists(thumb)) {
-      fail(`${p.src} has no grid thumbnail (${thumb}) — run: python3 optimize-images.py`);
-      imgIssues++;
-      return;
-    }
-    const full = jpegSize(path.join(root, p.src));
-    if (full && Math.max(full.width, full.height) > FULL_MAX_EDGE + 8) {
-      fail(`${p.src} is ${full.width}x${full.height}, over the ${FULL_MAX_EDGE}px cap — run: python3 optimize-images.py`);
-      imgIssues++;
-    }
-    const t = jpegSize(path.join(root, thumb));
-    if (t && Math.max(t.width, t.height) > THUMB_MAX_EDGE + 8) {
-      warn(`${thumb} is ${t.width}x${t.height}, larger than the ${THUMB_MAX_EDGE}px thumbnail size — run: python3 optimize-images.py --force`);
-    }
+    allSrcs(p).forEach((src) => {
+      if (!src || !exists(src)) return; // already reported in check 3
+      const thumb = thumbOf(src);
+      if (!exists(thumb)) {
+        fail(`${src} has no grid thumbnail (${thumb}) — run: python3 optimize-images.py`);
+        imgIssues++;
+        return;
+      }
+      const full = jpegSize(path.join(root, src));
+      if (full && Math.max(full.width, full.height) > FULL_MAX_EDGE + 8) {
+        fail(`${src} is ${full.width}x${full.height}, over the ${FULL_MAX_EDGE}px cap — run: python3 optimize-images.py`);
+        imgIssues++;
+      }
+      const t = jpegSize(path.join(root, thumb));
+      if (t && Math.max(t.width, t.height) > THUMB_MAX_EDGE + 8) {
+        warn(`${thumb} is ${t.width}x${t.height}, larger than the ${THUMB_MAX_EDGE}px thumbnail size — run: python3 optimize-images.py --force`);
+      }
+    });
   });
   if (!imgIssues) ok("All gallery images optimized (thumbnail + size cap)");
 }

@@ -1,6 +1,10 @@
 (function () {
   "use strict";
 
+  // Multi-photo pieces carry their supporting shots in `extra` (full-res
+  // paths, same convention as `src`) instead of separate PIECES entries.
+  // That's what collapses them to one grid tile with a "+N" hint; the
+  // lightbox's thumbnail strip is built from [src, ...extra].
   var PIECES = [
     { id: 1,  cat: "home",   src: "images/home/IMG_4905.jpg", title: "Coil Built Bowl/Planter", note: "I originally made this to be a salad or pasta serving bowl but I think it makes a lovely orchid bowl too!" },
     { id: 2,  cat: "home",   src: "images/home/IMG_braided_bowl.jpg" },
@@ -21,27 +25,19 @@
     { id: 17, cat: "garden", src: "images/garden/IMG_flower_cone_tower.jpg" },
     { id: 18, cat: "home",   src: "images/home/IMG_framed_ceramic_tiles.jpg", title: "Ceramic Tile Wall Art", note: "I really enjoyed experimenting with various shapes and sizes with these individual tiles I hand built and mounted. They look equally great hanging indoors or on a covered outdoor space. I also think they work in modern, MCM, or more vintage spaces (like mine!)." },
     { id: 19, cat: "home",   src: "images/home/IMG_tile_mosaic.jpeg", note: "This was a commission for an MCM tile wall art piece for a terrace in San Francisco overlooking Mission Bay. I shipped the tiles (and instructions) to the owner who assembled them onsite." },
-    { id: 20, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_face_masks_tree.jpg", caption: "Ceramic face masks on a tree", note: "For these Picasso inspired masks I experimented with underglaze in different saturations. They give color and interest to my front garden which is shady and attracts flower-eating deer. Of course these would look great indoors as well." },
-    { id: 21, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_face_masks_tree_2.jpg" },
-    { id: 22, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_face_masks_tree_3.jpg" },
-    { id: 23, cat: "garden", extraCats: ["totems"], src: "images/totems/IMG_totem_planter_column.jpg", caption: "Red Clay Planter Totem", note: "I built this using a red clay and chose to keep the natural color and not to glaze it. I added the design using white underglaze and stencils. I keep this outside all winter and enjoy planting it with annuals in the spring." },
-    { id: 24, cat: "home",   src: "images/home/IMG_6821.jpeg", caption: "Colorful Hug Mugs", note: "For these mugs I played with both color and texture using purchased and handmade pattern rollers and several glaze combinations. The pattern for each mug varies but I unified them by keeping the color palette consistent so they still look very much like a set." },
-    { id: 25, cat: "home",   src: "images/home/IMG_6817.jpeg" },
-    { id: 26, cat: "totems", src: "images/totems/IMG_silver_totem_tall.jpg", note: "This MCM inspired totem/tall sculpture was made in 4 large pieces and mounted on an acrylic base." },
-    { id: 27, cat: "home",   src: "images/home/IMG_0221.jpg", caption: "Ceramic and Driftwood Bird", note: "I saw a tree branch while on a walk and it reminded me of a bird's head and neck so I made her a body out of clay!" },
-    { id: 28, cat: "totems", src: "images/totems/IMG_silver_totem_short.jpg", caption: "MCM Tall Sculpture on Acrylic Base" },
-    { id: 29, cat: "home",   src: "images/home/IMG_candlestick_pair_speckled.jpg", caption: "Pair of sculpted candlesticks" },
-    { id: 30, cat: "home",   src: "images/home/IMG_candlesticks_white_pair.jpg" },
-    { id: 31, cat: "totems", src: "images/totems/IMG_5467.jpg", caption: "Intricate Coil Built Totem Planter" },
-    { id: 32, cat: "totems", src: "images/totems/IMG_5466.jpg" },
-    { id: 33, cat: "garden", extraCats: ["totems"], src: "images/totems/IMG_ode_to_nala_rabbit.jpg", caption: "Ode to Nala", note: "This totem was custom made for a much loved bunny (Nala). It’s a nod to some of her favorite things and her regal demeanor. I love planning and making these personal and meaningful." },
-    { id: 34, cat: "garden", extraCats: ["totems"], src: "images/totems/IMG_ode_to_nala_full.jpg" },
-    { id: 35, cat: "garden", extraCats: ["totems"], src: "images/totems/IMG_ode_to_nala_house.jpg" },
-    { id: 36, cat: "garden", src: "images/garden/IMG_dragonfly_succulent_pot.jpg" },
-    { id: 37, cat: "garden", src: "images/garden/IMG_dragonfly_garden_bed.jpg" },
-    { id: 38, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_wall_pockets_trio.jpg" },
-    { id: 39, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_wall_pockets_tree.jpg" },
-    { id: 40, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_wall_pockets_tree_wide.jpg" }
+    { id: 20, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_face_masks_tree.jpg", caption: "Ceramic face masks on a tree", note: "For these Picasso inspired masks I experimented with underglaze in different saturations. They give color and interest to my front garden which is shady and attracts flower-eating deer. Of course these would look great indoors as well.", extra: ["images/garden/IMG_face_masks_tree_2.jpg", "images/garden/IMG_face_masks_tree_3.jpg"] },
+    { id: 21, cat: "garden", extraCats: ["totems"], src: "images/totems/IMG_totem_planter_column.jpg", caption: "Red Clay Planter Totem", note: "I built this using a red clay and chose to keep the natural color and not to glaze it. I added the design using white underglaze and stencils. I keep this outside all winter and enjoy planting it with annuals in the spring." },
+    { id: 22, cat: "home",   src: "images/home/IMG_6821.jpeg", caption: "Colorful Hug Mugs", note: "For these mugs I played with both color and texture using purchased and handmade pattern rollers and several glaze combinations. The pattern for each mug varies but I unified them by keeping the color palette consistent so they still look very much like a set." },
+    { id: 23, cat: "home",   src: "images/home/IMG_6817.jpeg" },
+    { id: 24, cat: "totems", src: "images/totems/IMG_silver_totem_tall.jpg", note: "This MCM inspired totem/tall sculpture was made in 4 large pieces and mounted on an acrylic base." },
+    { id: 25, cat: "home",   src: "images/home/IMG_0221.jpg", caption: "Ceramic and Driftwood Bird", note: "I saw a tree branch while on a walk and it reminded me of a bird's head and neck so I made her a body out of clay!" },
+    { id: 26, cat: "totems", src: "images/totems/IMG_silver_totem_short.jpg", caption: "MCM Tall Sculpture on Acrylic Base" },
+    { id: 27, cat: "home",   src: "images/home/IMG_candlestick_pair_speckled.jpg", caption: "Pair of sculpted candlesticks" },
+    { id: 28, cat: "home",   src: "images/home/IMG_candlesticks_white_pair.jpg" },
+    { id: 29, cat: "totems", src: "images/totems/IMG_5467.jpg", caption: "Intricate Coil Built Totem Planter", extra: ["images/totems/IMG_5466.jpg"] },
+    { id: 30, cat: "garden", extraCats: ["totems"], src: "images/totems/IMG_ode_to_nala_rabbit.jpg", caption: "Ode to Nala", note: "This totem was custom made for a much loved bunny (Nala). It’s a nod to some of her favorite things and her regal demeanor. I love planning and making these personal and meaningful.", extra: ["images/totems/IMG_ode_to_nala_full.jpg", "images/totems/IMG_ode_to_nala_house.jpg"] },
+    { id: 31, cat: "garden", src: "images/garden/IMG_dragonfly_succulent_pot.jpg", extra: ["images/garden/IMG_dragonfly_garden_bed.jpg"] },
+    { id: 32, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_wall_pockets_trio.jpg", extra: ["images/garden/IMG_wall_pockets_tree.jpg", "images/garden/IMG_wall_pockets_tree_wide.jpg"] }
   ];
 
   // Intrinsic thumbnail dimensions, so each grid cell reserves its space
@@ -99,10 +95,13 @@
   function thumbOf(src) { return src.replace(/\/([^/]+)$/, "/thumbs/$1"); }
   // A piece's display name: its title if set, otherwise its short caption.
   function titleOf(p) { return p.title || p.caption || ""; }
+  // Every photo of a piece, lead first — what the lightbox thumbnail strip steps through.
+  function photosOf(p) { return [p.src].concat(p.extra || []); }
 
   PIECES.forEach(function (p, i) {
     var el = document.createElement("figure");
-    el.className = "piece " + catsOf(p).map(function (c) { return "cat-" + c; }).join(" ");
+    var extraCount = (p.extra || []).length;
+    el.className = "piece " + catsOf(p).map(function (c) { return "cat-" + c; }).join(" ") + (extraCount ? " has-extra" : "");
     el.setAttribute("data-cat", p.cat);
     el.setAttribute("data-id", p.id);
     var d = DIMS[p.src];
@@ -112,7 +111,9 @@
     // to load first, instead of competing with it on page load.
     el.innerHTML =
       '<div class="piece-media">' +
+        (extraCount ? '<span class="piece-stack s1"></span><span class="piece-stack s2"></span>' : '') +
         '<img src="' + thumbOf(p.src) + '"' + dimAttr + ' alt="' + (titleOf(p) || (CAT_LABELS[p.cat] + ' ' + p.id)) + '" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\'' + p.src + '\'">' +
+        (extraCount ? '<span class="piece-count">+' + extraCount + '</span>' : '') +
         '<figcaption>' +
           '<span class="piece-no">' + String(p.id).padStart(2, "0") + '</span>' +
         '</figcaption>' +
@@ -154,7 +155,9 @@
   });
 
   var lb = document.getElementById("lightbox");
+  var lbImage = document.querySelector(".lb-image");
   var lbImg = document.getElementById("lb-img");
+  var lbThumbs = document.getElementById("lb-thumbs");
   var lbCat = document.getElementById("lb-cat");
   var lbTitle = document.getElementById("lb-title");
   var lbNote = document.getElementById("lb-note");
@@ -192,10 +195,32 @@
     if (value) { textEl.textContent = value; fieldEl.style.display = ""; }
     else { textEl.textContent = ""; fieldEl.style.display = "none"; }
   }
+  // Fills the thumbnail strip for a multi-photo piece and wires each thumb to
+  // swap the main image, without touching the prev/next-between-pieces nav.
+  function renderThumbs(photos) {
+    if (photos.length < 2) {
+      lbImage.classList.remove("has-thumbs");
+      lbThumbs.innerHTML = "";
+      return;
+    }
+    lbImage.classList.add("has-thumbs");
+    lbThumbs.innerHTML = photos.map(function (src, i) {
+      return '<button type="button" class="' + (i === 0 ? "is-active" : "") + '" data-i="' + i + '"><img src="' + thumbOf(src) + '" alt="" loading="lazy"></button>';
+    }).join("");
+    Array.prototype.forEach.call(lbThumbs.children, function (btn) {
+      btn.addEventListener("click", function () {
+        lbImg.src = photos[parseInt(btn.getAttribute("data-i"), 10)];
+        Array.prototype.forEach.call(lbThumbs.children, function (b) { b.classList.remove("is-active"); });
+        btn.classList.add("is-active");
+      });
+    });
+  }
   function renderLb() {
     var p = visible[current];
-    lbImg.src = p.src;
+    var photos = photosOf(p);
+    lbImg.src = photos[0];
     lbImg.alt = titleOf(p) || (CAT_LABELS[p.cat] + " " + p.id);
+    renderThumbs(photos);
     var t = titleOf(p);
     // With a real title, show the category as a small eyebrow above it; without
     // one, use the category as the heading itself and drop the redundant eyebrow.
