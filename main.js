@@ -27,7 +27,7 @@
     { id: 23, cat: "garden", extraCats: ["totems"], src: "images/totems/IMG_totem_planter_column.jpg", caption: "Red Clay Planter Totem", note: "I built this using a red clay and chose to keep the natural color and not to glaze it. I added the design using white underglaze and stencils. I keep this outside all winter and enjoy planting it with annuals in the spring." },
     { id: 24, cat: "home",   src: "images/home/IMG_6821.jpeg", caption: "Colorful Hug Mugs", note: "For these mugs I played with both color and texture using purchased and handmade pattern rollers and several glaze combinations. The pattern for each mug varies but I unified them by keeping the color palette consistent so they still look very much like a set." },
     { id: 25, cat: "home",   src: "images/home/IMG_6817.jpeg" },
-    { id: 26, cat: "home",   src: "images/home/IMG_0221.jpg", caption: "Ceramic and Driftwood Bird" },
+    { id: 26, cat: "home",   src: "images/home/IMG_0221.jpg", caption: "Ceramic and Driftwood Bird", note: "I saw a tree branch while on a walk and it reminded me of a bird's head and neck so I made her a body out of clay!" },
     { id: 27, cat: "totems", src: "images/totems/IMG_silver_totem_tall.jpg" },
     { id: 28, cat: "totems", src: "images/totems/IMG_silver_totem_short.jpg", caption: "MCM Tall Sculpture on Acrylic Base" },
     { id: 29, cat: "home",   src: "images/home/IMG_candlestick_pair_speckled.jpg", caption: "Pair of sculpted candlesticks" },
