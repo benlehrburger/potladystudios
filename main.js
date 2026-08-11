@@ -12,17 +12,15 @@
     { id: 4,  cat: "home",   src: "images/home/IMG_tile_mosaic.jpeg", note: "This was a commission for an MCM tile wall art piece for a terrace in San Francisco overlooking Mission Bay. I shipped the tiles (and instructions) to the owner who assembled them onsite." },
     { id: 5,  cat: "garden", extraCats: ["home"], src: "images/garden/IMG_face_masks_tree.jpg", caption: "Ceramic face masks on a tree", note: "For these Picasso inspired masks I experimented with underglaze in different saturations. They give color and interest to my front garden which is shady and attracts flower-eating deer. Of course these would look great indoors as well.", extra: ["images/garden/IMG_face_masks_tree_2.jpg", "images/garden/IMG_face_masks_tree_3.jpg"] },
     { id: 6,  cat: "garden", extraCats: ["totems"], src: "images/totems/IMG_totem_planter_column.jpg", caption: "Red Clay Planter Totem", note: "I built this using a red clay and chose to keep the natural color and not to glaze it. I added the design using white underglaze and stencils. I keep this outside all winter and enjoy planting it with annuals in the spring." },
-    { id: 7,  cat: "home",   src: "images/home/IMG_6821.jpeg", caption: "Colorful Hug Mugs", note: "For these mugs I played with both color and texture using purchased and handmade pattern rollers and several glaze combinations. The pattern for each mug varies but I unified them by keeping the color palette consistent so they still look very much like a set." },
-    { id: 8,  cat: "home",   src: "images/home/IMG_6817.jpeg" },
-    { id: 9,  cat: "totems", src: "images/totems/IMG_silver_totem_tall.jpg", note: "This MCM inspired totem/tall sculpture was made in 4 large pieces and mounted on an acrylic base." },
-    { id: 10, cat: "home",   src: "images/home/IMG_0221.jpg", caption: "Ceramic and Driftwood Bird", note: "I saw a tree branch while on a walk and it reminded me of a bird's head and neck so I made her a body out of clay!" },
-    { id: 11, cat: "totems", src: "images/totems/IMG_silver_totem_short.jpg", caption: "MCM Tall Sculpture on Acrylic Base" },
-    { id: 12, cat: "home",   src: "images/home/IMG_candlestick_pair_speckled.jpg", caption: "Pair of sculpted candlesticks" },
-    { id: 13, cat: "home",   src: "images/home/IMG_candlesticks_white_pair.jpg" },
-    { id: 14, cat: "totems", src: "images/totems/IMG_5467.jpg", caption: "Intricate Coil Built Totem Planter", extra: ["images/totems/IMG_5466.jpg"] },
-    { id: 15, cat: "garden", extraCats: ["totems"], src: "images/totems/IMG_ode_to_nala_rabbit.jpg", caption: "Ode to Nala", note: "This totem was custom made for a much loved bunny (Nala). It’s a nod to some of her favorite things and her regal demeanor. I love planning and making these personal and meaningful.", extra: ["images/totems/IMG_ode_to_nala_full.jpg", "images/totems/IMG_ode_to_nala_house.jpg"] },
-    { id: 16, cat: "garden", src: "images/garden/IMG_dragonfly_succulent_pot.jpg", extra: ["images/garden/IMG_dragonfly_garden_bed.jpg"] },
-    { id: 17, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_wall_pockets_trio.jpg", extra: ["images/garden/IMG_wall_pockets_tree.jpg", "images/garden/IMG_wall_pockets_tree_wide.jpg"] }
+    { id: 7,  cat: "home",   src: "images/home/IMG_6817.jpeg", caption: "Colorful Hug Mugs", note: "For these mugs I played with both color and texture using purchased and handmade pattern rollers and several glaze combinations. The pattern for each mug varies but I unified them by keeping the color palette consistent so they still look very much like a set.", extra: ["images/home/IMG_6821.jpeg"] },
+    { id: 8,  cat: "home",   src: "images/home/IMG_0221.jpg", caption: "Ceramic and Driftwood Bird", note: "I saw a tree branch while on a walk and it reminded me of a bird's head and neck so I made her a body out of clay!" },
+    { id: 9,  cat: "totems", src: "images/totems/IMG_silver_totem_short.jpg", caption: "MCM Tall Sculpture on Acrylic Base", note: "This MCM inspired totem/tall sculpture was made in 4 large pieces and mounted on an acrylic base.", extra: ["images/totems/IMG_silver_totem_tall.jpg"] },
+    { id: 10, cat: "home",   src: "images/home/IMG_candlestick_pair_speckled.jpg", caption: "Pair of sculpted candlesticks" },
+    { id: 11, cat: "home",   src: "images/home/IMG_candlesticks_white_pair.jpg" },
+    { id: 12, cat: "totems", src: "images/totems/IMG_5467.jpg", caption: "Intricate Coil Built Totem Planter", extra: ["images/totems/IMG_5466.jpg"] },
+    { id: 13, cat: "garden", extraCats: ["totems"], src: "images/totems/IMG_ode_to_nala_rabbit.jpg", caption: "Ode to Nala", note: "This totem was custom made for a much loved bunny (Nala). It’s a nod to some of her favorite things and her regal demeanor. I love planning and making these personal and meaningful.", extra: ["images/totems/IMG_ode_to_nala_full.jpg", "images/totems/IMG_ode_to_nala_house.jpg"] },
+    { id: 14, cat: "garden", src: "images/garden/IMG_dragonfly_succulent_pot.jpg", extra: ["images/garden/IMG_dragonfly_garden_bed.jpg"] },
+    { id: 15, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_wall_pockets_trio.jpg", extra: ["images/garden/IMG_wall_pockets_tree.jpg", "images/garden/IMG_wall_pockets_tree_wide.jpg"] }
   ];
 
   // Intrinsic thumbnail dimensions, so each grid cell reserves its space
