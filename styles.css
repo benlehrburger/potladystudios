@@ -448,6 +448,7 @@ input, select, textarea { font: inherit; }
 }
 .lb-image {
   height: 100%;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -461,7 +462,17 @@ input, select, textarea { font: inherit; }
   object-fit: contain;
 }
 .lb-image.has-thumbs #lb-img { max-height: min(66vh, 660px); }
-.lb-thumbs { display: flex; gap: 0.6rem; }
+/* A piece can carry many supporting shots (e.g. a whole flower
+   collection) — the strip scrolls horizontally within its own width
+   instead of forcing the image and info column wider than the screen. */
+.lb-thumbs {
+  display: flex;
+  gap: 0.6rem;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.2rem;
+}
 .lb-thumbs button {
   width: 3.25rem; height: 3.25rem;
   flex: none;
