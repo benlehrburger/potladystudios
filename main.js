@@ -21,7 +21,7 @@
     { id: 13, cat: "garden", extraCats: ["totems"], src: "images/totems/IMG_ode_to_nala_rabbit.jpg", caption: "Ode to Nala", note: "This totem was custom made for a much loved bunny (Nala). It’s a nod to some of her favorite things and her regal demeanor. I love planning and making these personal and meaningful.", extra: ["images/totems/IMG_ode_to_nala_full.jpg", "images/totems/IMG_ode_to_nala_house.jpg"] },
     { id: 14, cat: "garden", src: "images/garden/IMG_dragonfly_succulent_pot.jpg", extra: ["images/garden/IMG_dragonfly_garden_bed.jpg"] },
     { id: 15, cat: "garden", extraCats: ["home"], src: "images/garden/IMG_wall_pockets_trio.jpg", extra: ["images/garden/IMG_wall_pockets_tree.jpg", "images/garden/IMG_wall_pockets_tree_wide.jpg"] },
-    { id: 16, cat: "home",   src: "images/home/IMG_tide_pool_vase_front.jpg", title: "Tide Pool Vase", extra: ["images/home/IMG_tide_pool_vase_side.jpg"] }
+    { id: 16, cat: "home",   src: "images/home/IMG_tide_pool_vase_front.jpg", title: "Tide Pool Vase", extra: ["images/home/IMG_tide_pool_vase_top.jpg"] }
   ];
 
   // Intrinsic thumbnail dimensions, so each grid cell reserves its space
@@ -70,7 +70,7 @@
     "images/garden/IMG_wall_pockets_tree.jpg": [480, 640],
     "images/garden/IMG_wall_pockets_tree_wide.jpg": [480, 640],
     "images/home/IMG_tide_pool_vase_front.jpg": [480, 640],
-    "images/home/IMG_tide_pool_vase_side.jpg": [559, 640]
+    "images/home/IMG_tide_pool_vase_top.jpg": [480, 640]
   };
 
   var CAT_LABELS = { garden: "Garden Pieces", home: "Home Decor", totems: "Totems" };
